@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>重构的原则 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第二章、重构的原则2.1 何为重构名词定义： 对软件内部结构的一种调整，目的是在不改变软件壳观察行为的前提下，提高其壳理解性，降低其修改成本  动词定义： 使用一系列重构手法，在不改变软件壳观察行为的前提下，调整其结构  重构只是整理代码？  重构可以理解为整理代码，但它可以提供一种更高效且受控的代码整理技术  两顶帽子： 分为：添加新功能、重构 重构的时候就不要在添加新的功能了  2.2 为何重">
+<meta name="keywords" content="重构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重构的原则">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/05/01/重构的原则/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第二章、重构的原则2.1 何为重构名词定义： 对软件内部结构的一种调整，目的是在不改变软件壳观察行为的前提下，提高其壳理解性，降低其修改成本  动词定义： 使用一系列重构手法，在不改变软件壳观察行为的前提下，调整其结构  重构只是整理代码？  重构可以理解为整理代码，但它可以提供一种更高效且受控的代码整理技术  两顶帽子： 分为：添加新功能、重构 重构的时候就不要在添加新的功能了  2.2 为何重">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-18T16:16:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重构的原则">
+<meta name="twitter:description" content="第二章、重构的原则2.1 何为重构名词定义： 对软件内部结构的一种调整，目的是在不改变软件壳观察行为的前提下，提高其壳理解性，降低其修改成本  动词定义： 使用一系列重构手法，在不改变软件壳观察行为的前提下，调整其结构  重构只是整理代码？  重构可以理解为整理代码，但它可以提供一种更高效且受控的代码整理技术  两顶帽子： 分为：添加新功能、重构 重构的时候就不要在添加新的功能了  2.2 为何重">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-重构的原则" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      重构的原则
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第二章、重构的原则"><a href="#第二章、重构的原则" class="headerlink" title="第二章、重构的原则"></a>第二章、重构的原则</h1><h2 id="2-1-何为重构"><a href="#2-1-何为重构" class="headerlink" title="2.1 何为重构"></a>2.1 何为重构</h2><h4 id="名词定义："><a href="#名词定义：" class="headerlink" title="名词定义："></a>名词定义：</h4><ul>
+<li>对软件内部结构的一种调整，目的是在不改变软件壳观察行为的前提下，提高其壳理解性，降低其修改成本</li>
+</ul>
+<h4 id="动词定义："><a href="#动词定义：" class="headerlink" title="动词定义："></a>动词定义：</h4><ul>
+<li>使用一系列重构手法，在不改变软件壳观察行为的前提下，调整其结构</li>
+</ul>
+<p><strong>重构只是整理代码？</strong></p>
+<ul>
+<li>重构可以理解为整理代码，但它可以提供一种更高效且受控的代码整理技术</li>
+</ul>
+<h4 id="两顶帽子："><a href="#两顶帽子：" class="headerlink" title="两顶帽子："></a>两顶帽子：</h4><ul>
+<li>分为：添加新功能、重构</li>
+<li>重构的时候就不要在添加新的功能了</li>
+</ul>
+<h2 id="2-2-为何重构"><a href="#2-2-为何重构" class="headerlink" title="2.2 为何重构"></a>2.2 为何重构</h2><h4 id="1-重构改进软件设计"><a href="#1-重构改进软件设计" class="headerlink" title="1. 重构改进软件设计"></a>1. 重构改进软件设计</h4><ul>
+<li>如果没有重构，程序的设计会逐渐变得腐败变质。也就是说，代码的流失是累积性的</li>
+<li>改进的一个重要方向就是消除重复代码<strong>（DRY）</strong></li>
+</ul>
+<h4 id="2-重构使软件更容易理解"><a href="#2-重构使软件更容易理解" class="headerlink" title="2. 重构使软件更容易理解"></a>2. 重构使软件更容易理解</h4><ul>
+<li>代码的理解是面向人类的</li>
+<li>作者对与那些能够立刻查阅的东西，大多都不刻意区记忆。往往在查询的过程中，你就逐渐地记住了</li>
+<li>利用重构来理解不熟悉的代码</li>
+<li>重构使得代码变得更加地清晰，可以让你发现一些以前看不到的设计层面的东西</li>
+</ul>
+<h4 id="3-重构帮助找到BUG"><a href="#3-重构帮助找到BUG" class="headerlink" title="3. 重构帮助找到BUG"></a>3. 重构帮助找到BUG</h4><ul>
+<li>也就是重构能够提高对代码的理解，也就能够发现原先代码的一些不足之处</li>
+<li>优秀的习惯能够让你成为一个好程序员</li>
+</ul>
+<h4 id="4-重构提高编程速度"><a href="#4-重构提高编程速度" class="headerlink" title="4. 重构提高编程速度"></a>4. 重构提高编程速度</h4><ul>
+<li>重构帮助你更快速地开发程序</li>
+<li>良好的设计是快速开发的根本，因为其降低了程序的修改成本和理解成本（在大型程序中往往更容易发现）</li>
+</ul>
+<h2 id="2-3-何时重构"><a href="#2-3-何时重构" class="headerlink" title="2.3 何时重构"></a>2.3 何时重构</h2><ul>
+<li>重构不来九不是一件应该特别拨出时间来做的事情，重构应该随时进行</li>
+</ul>
+<h4 id="三次法则"><a href="#三次法则" class="headerlink" title="三次法则"></a>三次法则</h4><ul>
+<li>重复三次做同样的事情，就应该着手重构</li>
+</ul>
+<h4 id="添加功能时重构"><a href="#添加功能时重构" class="headerlink" title="添加功能时重构"></a>添加功能时重构</h4><ul>
+<li>最常见的重构时机，就是添加新的功能的时候</li>
+<li>即降低软件的修改成本，提高对代码的理解。在未来添加新的功能可以更加的容易和快速</li>
+</ul>
+<h4 id="修补错误时重构"><a href="#修补错误时重构" class="headerlink" title="修补错误时重构"></a>修补错误时重构</h4><ul>
+<li>调试的时候运用重构，多半是为了让代码更具有可读性</li>
+</ul>
+<h4 id="复审代码时重构"><a href="#复审代码时重构" class="headerlink" title="复审代码时重构"></a>复审代码时重构</h4><ul>
+<li>很多公司都会做常规的代码复审，因为这种活动可以改善开发的状况</li>
+<li>让知识在开发团队里面传播，也能够想出更好的点子</li>
+<li>重构一样可以帮助你复审别人的代码</li>
+<li>在复审的时候，最好是复审者搭配一个原作者，也就是<strong>极限编程</strong>里面所说的<strong>“结对编程”</strong></li>
+</ul>
+<h4 id="为什么重构有用？"><a href="#为什么重构有用？" class="headerlink" title="为什么重构有用？"></a>为什么重构有用？</h4><ul>
+<li>程序有两面价值：“今天可以为你做什么”和“明天可以为你做什么”</li>
+<li>重构也就是为未来软件的修改降低成本</li>
+</ul>
+<h4 id="程序难以相与的原因"><a href="#程序难以相与的原因" class="headerlink" title="程序难以相与的原因"></a>程序难以相与的原因</h4><ol>
+<li>难以阅读的程序，难以修改</li>
+<li>逻辑重复的程序，难以修改</li>
+<li>添加新的功能时，需要修改已有代码的程序，难以修改</li>
+<li>带复杂条件逻辑的程序，难以修改</li>
+</ol>
+<h4 id="我们期望程序"><a href="#我们期望程序" class="headerlink" title="我们期望程序"></a>我们期望程序</h4><ol>
+<li>容易阅读</li>
+<li>所有逻辑都只在唯一地点指定</li>
+<li>新的改动不会危及现有的行为</li>
+<li>斤可能简单表达条件逻辑</li>
+</ol>
+<h4 id="2-4-怎么对经历说"><a href="#2-4-怎么对经历说" class="headerlink" title="2.4 怎么对经历说"></a>2.4 怎么对经历说</h4><ul>
+<li>对于懂技术的经历来说，解释重构应该不难</li>
+<li>对于值关心质量的经理，那么问题九集中在了“质量”上面</li>
+<li>大量研究结果表明，技术复审是减少错误、提高开发速度的一条重要的途径</li>
+<li>或者在难以解释的情况下，不告诉可能比较好</li>
+</ul>
+<h4 id="间接层和重构"><a href="#间接层和重构" class="headerlink" title="间接层和重构"></a>间接层和重构</h4><ul>
+<li>计算机科学是这样一门科学：他相信所有的问题都可以添加一个间接层来解决</li>
+<li>但是间接层是一把双刃剑，每次把东西分成两份，你就要多管理一份东西，代理委托就回变得更加复杂</li>
+</ul>
+<p><strong>间接层的价值：</strong></p>
+<ol>
+<li>允许逻辑共享（重复函数）</li>
+<li>分开解释意图和实现</li>
+<li>隔离变化（比如子类，可以避免影响父类的操作（有两个地方调用了父类，我就可以考虑设计一个子类））</li>
+<li>封装条件逻辑（对象的奇妙机制：多态消息，可以清晰灵活地表达条件逻辑，将条件逻辑转换为消息形式，往往能够降低代码的重复、增加清晰度并提高弹性）</li>
+</ol>
+<h2 id="2-5-重构的难题"><a href="#2-5-重构的难题" class="headerlink" title="2.5 重构的难题"></a>2.5 重构的难题</h2><ul>
+<li>学习一种可以大幅度提高生产力的新技术时，你总是难以察觉其不适用的场合</li>
+<li>在10年前，对象技术也往往如此。要反对那种盲目性</li>
+<li>随着对重构的了解日益增多，我们也要监控那些重构可能引入的问题</li>
+</ul>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><ul>
+<li>重构经常出现的一个领域就是数据库，绝大多数的商用程序和数据库都是紧密地耦合在一起，数据库结构和对象模型紧密的结合在一起</li>
+<li>还有一个问题就是数据库迁移（migration），数据结构的改变导致你需要迁移所有的数据</li>
+<li>在<strong>非对象数据库</strong>中：往往可以引入一个中间层来解决问题：分离两个模型之间的变化，这样只要修改中间层即可，虽然这样会增加系统的复可以杂度，但是可以带给你很大的灵活度</li>
+<li>无需在一开始的时候就插入间接层，在需要修改的时候，进行修改就好</li>
+<li>某些面向对象的数据库，可以提供不同版本的自动迁移功能，减少数据迁移时的工作量。需要注意数据结构的变化，以及修改数据的访问方法</li>
+</ul>
+<h4 id="修改接口"><a href="#修改接口" class="headerlink" title="修改接口"></a>修改接口</h4><ul>
+<li>如果所有的接口影响的信息都在你的掌握之下，那么修改不成问题</li>
+<li>问题在于对于那些已经发布了的接口，你需要考虑存修改接口所带来的问题</li>
+<li>所以，一般上我们新的接口都需要兼容旧的接口。直到所有的用户把迁移到新的接口里</li>
+<li>另一种是，不要过早发布你的接口。或者可以在旧的接口中产生一个警告，然红会尽快地迁移到新的接口</li>
+</ul>
+<h4 id="难以通过重构手法完成的设计改动"><a href="#难以通过重构手法完成的设计改动" class="headerlink" title="难以通过重构手法完成的设计改动"></a>难以通过重构手法完成的设计改动</h4><ul>
+<li>在某些情况下，我们可以有效地进行重构，对于安全性的问题，常常遇到</li>
+<li>所以，我们常常在重构之前，进行预想重构的方法，如果重构足够简单，那么没有问题，可以直接重构</li>
+</ul>
+<h4 id="何时不该重构"><a href="#何时不该重构" class="headerlink" title="何时不该重构"></a>何时不该重构</h4><ul>
+<li>代码过于混乱，重构的难度比直接重写要高</li>
+<li>重构之前，代码必须要能够正常运作</li>
+<li>一个折中的办法：将“大块头软件”重构为封装良好的小型组件。然后就可以逐一对组件进行重构或重建</li>
+<li>项目时间接近最后期限，你应该避免重构</li>
+</ul>
+<h2 id="2-6-重构与设计"><a href="#2-6-重构与设计" class="headerlink" title="2.6 重构与设计"></a>2.6 重构与设计</h2><blockquote>
+<p>重构肩负着一项特殊的使命：它和设计互补</p>
+</blockquote>
+<ul>
+<li>初识编程的时候，埋头写代码，混混噩噩地进行开发。发现，事先做好设计可以节省返工的高昂成本</li>
+<li>也有另一种观点，重构可以取代设计，不断的重构可以获得良好的设计软件</li>
+<li><strong>我的看法</strong>：无论是先设计后开发，还是后期进行重构。都表明开发人员要有一定的软件设计能力，因为我们无法避免地会发现程序中的问题（BUG）。随着编程的经验的提高，和对开发的理解不断提高自己的设计能力。不如把两种方法结合起来。<strong>在开发中重构，在重构中设计</strong>。开发前期，有章法可寻；后期通过不断重构完善设计。<strong>在设计和重构之间相辅相成</strong>。</li>
+<li>重构可以带来更简单的设计，同时又不损失灵活性，也降低了设计过程中的难度，减轻了设计压力。</li>
+</ul>
+<h4 id="劳而不获"><a href="#劳而不获" class="headerlink" title="劳而不获"></a>劳而不获</h4><ul>
+<li>在软件开发的过程中，常常会遇到一些性能问题。（学员信息管理系统、帐号管理）</li>
+<li>哪怕你完全了解系统，也请实际度量他的性能问题，不要臆测。臆测会让你学到一些东西，但十有八九是错的</li>
+</ul>
+<h2 id="2-7-重构与性能"><a href="#2-7-重构与性能" class="headerlink" title="2.7 重构与性能"></a>2.7 重构与性能</h2><ul>
+<li>并不赞同提高设计的纯洁性二忽略性能，把性能依赖于硬件上</li>
+<li><strong>三种快速软件的编写方法：</strong><ol>
+<li>时间预算法：适用于实时系统</li>
+<li>持续关注法：要求程序员在任何时间上做任何事情，都要设法保持系统的高性能。</li>
+<li>利用90%以上的统计数据：在开发前期不用特别关注性能问题，后期在集中优化（用性能度量工具，注意要把握好测试的幅度，不可过大）</li>
+</ol>
+</li>
+<li>重构可以帮助我写出更好更快的软件，在短期看来的确可能使软件变慢，但在优化阶段的软件性能调整上更容易，最终还会的到更好的效果</li>
+</ul>
+<h2 id="2-8-重构起源何处"><a href="#2-8-重构起源何处" class="headerlink" title="2.8 重构起源何处"></a>2.8 重构起源何处</h2><ul>
+<li>来源与程序员对代码的理解，起到推动作用的是<code>Ward Cunningham</code> &amp; <code>kent Beck</code>下使用<code>Smalltalk</code></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年05月19日 00:16</p>
+        <p>原始链接： <a class="post-url" href="/2018/05/01/重构的原则/" title="重构的原则">https://ilifexiao.github.io/2018/05/01/重构的原则/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/05/01/重构的原则/&title=《重构的原则》 — iLife's Blog&pic=2018/05/01/重构的原则/face.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/05/01/重构的原则/&title=《重构的原则》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/05/01/重构的原则/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重构的原则》 — iLife's Blog&url=https://ilifexiao.github.io/2018/05/01/重构的原则/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/05/01/重构的原则/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/05/01/重构的原则/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/重构/" class="color3">重构</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第二章、重构的原则"><span class="post-toc-text">第二章、重构的原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-何为重构"><span class="post-toc-text">2.1 何为重构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#名词定义："><span class="post-toc-text">名词定义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动词定义："><span class="post-toc-text">动词定义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#两顶帽子："><span class="post-toc-text">两顶帽子：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-为何重构"><span class="post-toc-text">2.2 为何重构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-重构改进软件设计"><span class="post-toc-text">1. 重构改进软件设计</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-重构使软件更容易理解"><span class="post-toc-text">2. 重构使软件更容易理解</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-重构帮助找到BUG"><span class="post-toc-text">3. 重构帮助找到BUG</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-重构提高编程速度"><span class="post-toc-text">4. 重构提高编程速度</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-何时重构"><span class="post-toc-text">2.3 何时重构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三次法则"><span class="post-toc-text">三次法则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#添加功能时重构"><span class="post-toc-text">添加功能时重构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修补错误时重构"><span class="post-toc-text">修补错误时重构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复审代码时重构"><span class="post-toc-text">复审代码时重构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么重构有用？"><span class="post-toc-text">为什么重构有用？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#程序难以相与的原因"><span class="post-toc-text">程序难以相与的原因</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#我们期望程序"><span class="post-toc-text">我们期望程序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4-怎么对经历说"><span class="post-toc-text">2.4 怎么对经历说</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#间接层和重构"><span class="post-toc-text">间接层和重构</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-重构的难题"><span class="post-toc-text">2.5 重构的难题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数据库"><span class="post-toc-text">数据库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修改接口"><span class="post-toc-text">修改接口</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#难以通过重构手法完成的设计改动"><span class="post-toc-text">难以通过重构手法完成的设计改动</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#何时不该重构"><span class="post-toc-text">何时不该重构</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-6-重构与设计"><span class="post-toc-text">2.6 重构与设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#劳而不获"><span class="post-toc-text">劳而不获</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-7-重构与性能"><span class="post-toc-text">2.7 重构与性能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-8-重构起源何处"><span class="post-toc-text">2.8 重构起源何处</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/05/02/代码的坏味道/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          代码的坏味道
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/04/27/重构，第一个案列/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">重构，第一个案列</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

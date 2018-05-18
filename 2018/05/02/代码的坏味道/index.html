@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>代码的坏味道 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第三章、代码的坏味道 培养出自己的判断力——能够清晰地表达自己的观点   目的：清晰、容易理解、易于修改的代码  3.1 重复代码（Duplicated Code）方法： 提炼函数（Extract Method）P110 函数上移（Pull Up Method）P322 塑造模板函数（From Template Method）P345 替换算法（Substitute Algorithm）P139">
+<meta name="keywords" content="重构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码的坏味道">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/05/02/代码的坏味道/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第三章、代码的坏味道 培养出自己的判断力——能够清晰地表达自己的观点   目的：清晰、容易理解、易于修改的代码  3.1 重复代码（Duplicated Code）方法： 提炼函数（Extract Method）P110 函数上移（Pull Up Method）P322 塑造模板函数（From Template Method）P345 替换算法（Substitute Algorithm）P139">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-18T16:16:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码的坏味道">
+<meta name="twitter:description" content="第三章、代码的坏味道 培养出自己的判断力——能够清晰地表达自己的观点   目的：清晰、容易理解、易于修改的代码  3.1 重复代码（Duplicated Code）方法： 提炼函数（Extract Method）P110 函数上移（Pull Up Method）P322 塑造模板函数（From Template Method）P345 替换算法（Substitute Algorithm）P139">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-代码的坏味道" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      代码的坏味道
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-05-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第三章、代码的坏味道"><a href="#第三章、代码的坏味道" class="headerlink" title="第三章、代码的坏味道"></a>第三章、代码的坏味道</h1><blockquote>
+<p>培养出自己的判断力——能够清晰地表达自己的观点</p>
+</blockquote>
+<ul>
+<li>目的：清晰、容易理解、易于修改的代码</li>
+</ul>
+<h2 id="3-1-重复代码（Duplicated-Code）"><a href="#3-1-重复代码（Duplicated-Code）" class="headerlink" title="3.1 重复代码（Duplicated Code）"></a>3.1 重复代码（Duplicated Code）</h2><h4 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼函数（Extract Method）<strong>P110</strong></li>
+<li>函数上移（Pull Up Method）<strong>P322</strong></li>
+<li>塑造模板函数（From Template Method）<strong>P345</strong></li>
+<li>替换算法（Substitute Algorithm）<strong>P139</strong></li>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+</ol>
+<h4 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你有一段代码可以被组织再一起并独立起来<strong>——将这段代码放进一个独立函数中，并让函数名称解释该函数的作用</strong></li>
+<li>有些函数再各个子类中产生完全相同的结果<strong>——将该函数移至超类</strong></li>
+<li>你有一些子类，期中相应的某些函数以相同的顺序执行类似的操作，但各个操作再细节上有所不同<strong>——将这些操作分别放进独立函数中，并保持他们有相同的签名，于是原函数也就变得相同了。然后将原函数移至超类</strong></li>
+<li>你想要把某个算法替换为另一个更清晰的算法<strong>——将函数本体替换为另一个算法</strong></li>
+<li>某个类做了应该由两个类做的事<strong>——建立一个新类，将相关字段和函数从旧类搬移到新类</strong></li>
+</ol>
+<h4 id="阅读："><a href="#阅读：" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼函数（Extract Method）</strong><ul>
+<li>将两个函数相同的部分提取出来（相同的部分可以是：代码、流程等）</li>
+</ul>
+</li>
+<li><strong>函数上移（Pull Up Method）</strong><ul>
+<li>将子类中做相同事情的函数，提升为超类中的方法</li>
+</ul>
+</li>
+<li><strong>塑造模板函数（From Template Method）</strong><ul>
+<li>也是对于子类中大部分相同的方法，提取出共有流程，然后不同的细节由子类的提取方法来完成</li>
+</ul>
+</li>
+<li><strong>替换算法（Substitute Algorithm）</strong><ul>
+<li>做相同的事情的代码一般上都会更简单的算法来实现</li>
+</ul>
+</li>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一个类的两个函数含有相同的表达式</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>两个子类含有相同的表达式</td>
+<td>1,2</td>
+<td></td>
+</tr>
+<tr>
+<td>两个子类含有相似的表达，逻辑过程相同</td>
+<td>1,2,3</td>
+<td></td>
+</tr>
+<tr>
+<td>函数以不同的算法，做相同的事情</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>毫不相关的类出现Duplicated Code</td>
+<td>5</td>
+<td>或第三方类(util.class)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-2-长函数（Long-Method）"><a href="#3-2-长函数（Long-Method）" class="headerlink" title="3.2 长函数（Long Method）"></a>3.2 长函数（Long Method）</h2><blockquote>
+<p>函数式编程、利用所有的代码段组合，来完成大型的特定功能</p>
+</blockquote>
+<h4 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>“间接层”所能带来的全部利益——解释能力、共享能力、选择能力——都是由小型函数支持的<strong>P61</strong></li>
+<li>让小函数容易理解的真正关键在于一个好的名字，这样就可以免去返回查看其他函数做了什么</li>
+<li>最终效果：应该积极的分解函数</li>
+<li><strong>原则：</strong>每当感觉需要注释来说明点什么东西，就吧需要说明的东西移动到独立函数里，并以其用途（而非实现手法）命名</li>
+<li><strong>注释的对象：</strong>一行、一组代码，哪怕替换后的函数调用动作比自身函数还长，只要函数名称能够解释其用途即可。关键不在于函数的长度，而在于函数“做什么”和“如何做”之间的<strong>语义距离</strong></li>
+<li>99%的场合里，只要<strong>提炼方法</strong>即可</li>
+<li>如果函数里面有大量的参数和临时变量，</li>
+</ul>
+<h4 id="方法：-1"><a href="#方法：-1" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼函数（Extract Method）<strong>P110</strong></li>
+<li>以查询代替临时变量值（Replace temp with Query）<strong>P120</strong></li>
+<li>引入参数对象（Introduce Parameter Object）<strong>P295</strong></li>
+<li>保持对象完整（Preserve Whole Object）<strong>P288</strong></li>
+<li>以函数对象取代函数（Replace Method with Method Object）<strong>P135</strong></li>
+<li>分解条件表达式（Decompose Conditional）<strong>P238</strong></li>
+</ol>
+<h4 id="含义：-1"><a href="#含义：-1" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你有一段代码可以被组织再一起并独立起来<strong>——将这段代码放进一个独立函数中，并让函数名称解释该函数的作用</strong></li>
+<li>你的程序以一个临时变量保存某一表达式的运算结果<strong>——将这个表达式提炼到一个独立函数中。将这个临时变量的所有引用点替换为对新函数的调用，此后，新函数就可以被其他函数使用</strong></li>
+<li>某些参数总是很自然地同时出现<strong>——以一个对象取代这些参数</strong></li>
+<li>你从某个对象中取出若干值，将他们作为某一次函数调用时的参数<strong>——改为传递整个对象</strong></li>
+<li>你有一个大型函数，其中对局部变量的使用使你无法采用Extract Method<strong>——将这个函数放进一个单独对象中，如此一来局部变量就成了对象内的字段。然后你可以再同一个对象中将这个大型函数分解为多个小型函数</strong></li>
+<li>你有一个复杂的条件（if-then-else）语句<strong>——从if、then、else三个段落分别提炼出独立函数</strong></li>
+</ol>
+<h4 id="阅读：-1"><a href="#阅读：-1" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼函数（Extract Method）</strong><ul>
+<li>将两个函数相同的部分提取出来（相同的部分可以是：代码、流程等）</li>
+</ul>
+</li>
+<li><strong>以查询代替临时变量值（Replace temp with Query）</strong><ul>
+<li>临时变量的问题在于它是局部的，所以会让你写出更长的函数</li>
+<li>如果把它替换为一个查询函数，那没在该类所有的方法都可以访问到该变量信息。</li>
+<li>但有时难以提炼（临时变量被多次赋值等），可以尝试用<strong>分解临时变量（Split Temporary Variable）</strong>或<strong>将查询函数和修改函数分离（Sperate Qurey form Modifer）</strong>使情况变得简单一些，然后再替换临时变量</li>
+</ul>
+</li>
+<li><strong>引入参数对象（Introduce Parameter Object）</strong><ul>
+<li>对于数据泥团（Data Clumps），可以运用对象包装这些数据。</li>
+<li>然后也可以发现可以移动到新类中的<strong>通用方法</strong>（常常是对包装的数据处理代码段），这样就进一步地降低了代码的理解和修改难度</li>
+</ul>
+</li>
+<li><strong>保持对象完整（Preserve Whole Object）</strong><ul>
+<li>原因在于：万一函数将来需要新的数据项，就需要修改所有的调用处</li>
+<li>而对象则可以简单的增加信息，函数就能获取到新的数据项，而不修改方法参数。如果这样会使得你的代码结构恶化，那就不要使用该方法</li>
+<li>对于函数只传递对象的期中一项数据，那么只传递数值还是传递对象？</li>
+<li>也许传递对象会有一点的性能问题，但是更重要的在于对象之间的依赖关系</li>
+<li>如果被调用的函数使用了来自另一个对象的很多项数据，这可能意味着该函数应该被定义在那些数据所属的对象中，即需要考虑<strong>搬移函数（Move Method）</strong></li>
+</ul>
+</li>
+<li><strong>以函数对象取代函数（Replace Method with Method Object）</strong><ul>
+<li>对于大量存在的局部变量，会导致难以分解一个大型函数</li>
+<li>建立一个新类，根据待处理函数的用途，为这个类命名，字段为那些临时变量</li>
+<li>创建构造函数，comput()用于处理需提取的函数，然后引用该函数的调用对象，用于访问调用对象的的值</li>
+</ul>
+</li>
+<li><strong>分解条件表达式（Decompose Conditional）</strong><ul>
+<li>复杂的条件逻辑是最常导致复杂度上升的地点之一</li>
+<li>对于嵌套的条件表达式：<strong>以卫语句取代嵌套条件表达式（Replalce Nested Conditional with Guard Clauses）</strong></li>
+<li>同样也是再拉近代码和语义解释之间的距离</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每当需要通过注释来解释说明的时候</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>函数中有单一且唯一赋值的临时变量</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>调用函数的参数过多或临时变量很多</td>
+<td>3，4</td>
+<td></td>
+</tr>
+<tr>
+<td>调用函数的参数和临时变量都很多</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>函数里碰到复杂的条件表达式和循环</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-3-过大的类（Larger-Class）"><a href="#3-3-过大的类（Larger-Class）" class="headerlink" title="3.3 过大的类（Larger Class）"></a>3.3 过大的类（Larger Class）</h2><h4 id="解释：-1"><a href="#解释：-1" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>利用单个类做太多的事情，导致出现太多的实例变量</li>
+<li>同样会出现许多的重复函数</li>
+</ul>
+<h4 id="方法：-2"><a href="#方法：-2" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+<li>提炼子类（Extract Subclass）<strong>P330</strong></li>
+<li>提炼接口（Extract Interface）<strong>P341</strong></li>
+</ol>
+<h4 id="含义：-2"><a href="#含义：-2" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>某个类做了应该由两个类做的事<strong>——建立一个新类，将相关字段和函数从旧类搬移到新类</strong></li>
+<li>类中的某些特性只被某些（并非全部）实例用到<strong>——新建一个子类，将上诉的那一部分特性移到子类中</strong></li>
+<li>若干客户使用类接口中的同一子集，或者两个类的接口有部分相同<strong>——将相同的子集提炼到一个独立的接口中</strong></li>
+</ol>
+<h4 id="阅读：-2"><a href="#阅读：-2" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+<li><strong>提炼子类（Extract Subclass）</strong><ul>
+<li>与<strong>提炼类（Extract Class）</strong>相比，先处理函数再处理数据会更简单一点</li>
+</ul>
+</li>
+<li><strong>提炼接口（Extract Interface）</strong><ul>
+<li>对于使用到类中的一部分功能，可以考虑将其划分到接口中</li>
+<li>这样可以使得程序调用更加地清晰，以及将来可以接入更多的功能，只有实现了该接口即可</li>
+<li>和<strong>提炼超类（Extract Superclass）</strong>有相似之处，他只能提炼公共接口，不能提供通用代码</li>
+<li>可能会导致重复代码，可以使用<strong>提炼类（Extract Class）</strong>将通用行为，放到组件里面，然后委托该类执行</li>
+<li>还有一种用法是，用接口来表示外部服务</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-4-过长参数列（Long-Parameter-List）"><a href="#3-4-过长参数列（Long-Parameter-List）" class="headerlink" title="3.4 过长参数列（Long Parameter List）"></a>3.4 过长参数列（Long Parameter List）</h2><h4 id="解释：-2"><a href="#解释：-2" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>导致难以理解</li>
+<li>后期添加新的数据，会导致需要修改太多地方</li>
+</ul>
+<h4 id="方法：-3"><a href="#方法：-3" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>用函数代替参数（Replace Parameter with Method）<strong>P292</strong></li>
+<li>保持对象完整（Preserve Whole Object）<strong>P288</strong></li>
+<li>引入参数对象（Introduce Parameter Object）<strong>P295</strong></li>
+</ol>
+<h4 id="含义：-3"><a href="#含义：-3" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>对象调用某个函数，并将所得的结果作为参数，传递给另一个函数，而接受该参数的函数本身也能调用前一个函数<strong>——让参数接收者去除该项参数，并直接调用前一个函数</strong></li>
+<li>你从某个对象中取出若干值，将他们作为某一次函数调用时的参数<strong>——改为传递整个对象</strong></li>
+<li>某些参数总是很自然地同时出现<strong>——以一个对象取代这些参数</strong></li>
+</ol>
+<h4 id="阅读：-3"><a href="#阅读：-3" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>用函数代替参数（Replace Parameter with Method）</strong><ul>
+<li>办法一：看看接收端是否能和调用端采用相同的计算来获取到参数值</li>
+<li><strong>以明确的函数取代参数（Replace Parameter with Explicit Methods）</strong> <strong>P285</strong></li>
+<li>以上如，工程方法的调用根据不同的类型创建不同的对象</li>
+<li>为了以后接口的灵活，而预留的多余参数：可以预算一下修改的成本 &amp; 是否需要降低各个部位之间的依赖</li>
+</ul>
+</li>
+<li><strong>保持对象完整（Preserve Whole Object）</strong><ul>
+<li>原因在于：万一函数将来需要新的数据项，就需要修改所有的调用处</li>
+<li>而对象则可以简单的增加信息，函数就能获取到新的数据项，而不修改方法参数。如果这样会使得你的代码结构恶化，那就不要使用该方法</li>
+<li>对于函数只传递对象的期中一项数据，那么只传递数值还是传递对象？</li>
+<li>也许传递对象会有一点的性能问题，但是更重要的在于对象之间的依赖关系</li>
+<li>如果被调用的函数使用了来自另一个对象的很多项数据，这可能意味着该函数应该被定义在那些数据所属的对象中，即需要考虑<strong>搬移函数（Move Method）</strong></li>
+</ul>
+</li>
+<li><strong>引入参数对象（Introduce Parameter Object）</strong><ul>
+<li>对于数据泥团（Data Clumps），可以运用对象包装这些数据。</li>
+<li>然后也可以发现可以移动到新类中的<strong>通用方法</strong>（常常是对包装的数据处理代码段），这样就进一步地降低了代码的理解和修改难度</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-5-发散式变化（Divergent-Change）"><a href="#3-5-发散式变化（Divergent-Change）" class="headerlink" title="3.5 发散式变化（Divergent Change）"></a>3.5 发散式变化（Divergent Change）</h2><h4 id="解释：-3"><a href="#解释：-3" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>“一个类受多种变化的影响”</li>
+<li>我们希望的是，一个类受到的影响尽量只有一种</li>
+</ul>
+<h4 id="方法：-4"><a href="#方法：-4" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+</ol>
+<h4 id="含义：-4"><a href="#含义：-4" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>类中的某些特性只被某些（并非全部）实例用到<strong>——新建一个子类，将上诉的那一部分特性移到子类中</strong></li>
+</ol>
+<h4 id="阅读：-4"><a href="#阅读：-4" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-6-散弹式修改（Shotgun-Surgery）"><a href="#3-6-散弹式修改（Shotgun-Surgery）" class="headerlink" title="3.6 散弹式修改（Shotgun Surgery）"></a>3.6 散弹式修改（Shotgun Surgery）</h2><h4 id="解释：-4"><a href="#解释：-4" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>类似<strong>Divergent Change</strong>，但也可以看做类的联系较为耦合，修改时需要修改这些因为外部状态改变下的方法</li>
+<li>“表示一种变化引发多个类相应修改”</li>
+<li>常常我们希望“外界变化”与“需要修改的类”趋于一一对应</li>
+</ul>
+<h4 id="方法：-5"><a href="#方法：-5" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+<li>搬移字段（Move Field）<strong>P146</strong></li>
+<li>将类内联化（Inline Class）<strong>P154</strong></li>
+</ol>
+<h4 id="含义：-5"><a href="#含义：-5" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+<li>再你的程序中，某个字段被其所在的类之外的类更多的使用<strong>——再目标类新建一个字段，修改源字段的所有用户，令它们改用新字段</strong></li>
+<li>某个类没有做太多事情<strong>——将这个类的所有特性搬移到另一个类中，然后移除原类</strong></li>
+</ol>
+<h4 id="阅读：-5"><a href="#阅读：-5" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>搬移函数（Move Method）</strong><ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+<li><strong>搬移字段（Move Field）</strong><ul>
+<li>再类之间移动状态和行为，是重构之中不可缺少的部分</li>
+<li>再使用<strong>Extract Class</strong>时，通常先搬移字段，后搬移函数</li>
+<li>对于该类中的许多函数都用到了该字段，采用<strong>Self Encapsulate Field</strong>，这样只有修改访问函数即可</li>
+</ul>
+</li>
+<li><strong>将类内联化（Inline Class）</strong><ul>
+<li>正好与<strong>Extract Class</strong>相反，如果一个类不在承担足够的责任，不在有单独存在的理由</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-7-依恋情节（Feature-Envy）"><a href="#3-7-依恋情节（Feature-Envy）" class="headerlink" title="3.7 依恋情节（Feature Envy）"></a>3.7 依恋情节（Feature Envy）</h2><h4 id="解释：-5"><a href="#解释：-5" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>对象技术的要点：“将数据和对数据的操作行为包装在一起”</li>
+<li>对于一个函数用到多个类的情况下，判断哪个类拥有最多被此函数使用的数据，就搬移到那个类中</li>
+<li>对于上诉的函数，先采用<strong>Extract Class</strong>会比较容易一些</li>
+</ul>
+<h4 id="方法：-6"><a href="#方法：-6" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼函数（Extract Method）<strong>P110</strong></li>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+</ol>
+<h4 id="含义：-6"><a href="#含义：-6" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你有一段代码可以被组织再一起并独立起来<strong>——将这段代码放进一个独立函数中，并让函数名称解释该函数的作用</strong></li>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+</ol>
+<h4 id="阅读：-6"><a href="#阅读：-6" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼函数（Extract Method）</strong><ul>
+<li>将两个函数相同的部分提取出来（相同的部分可以是：代码、流程等）</li>
+</ul>
+</li>
+<li><strong>搬移函数（Move Method）</strong><ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-8-数据泥团（Data-Clump）"><a href="#3-8-数据泥团（Data-Clump）" class="headerlink" title="3.8 数据泥团（Data Clump）"></a>3.8 数据泥团（Data Clump）</h2><h4 id="解释：-6"><a href="#解释：-6" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>两个类中相同的字段、函数的相同参数</li>
+<li>这些总是出现再一起的数据应该拥有他们自己的对象</li>
+<li>这样做可以缩短参数列表，简化函数的调用</li>
+</ul>
+<h4 id="方法：-7"><a href="#方法：-7" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+<li>引入参数对象（Introduce Parameter Object）<strong>P295</strong></li>
+<li>保持对象完整（Preserve Whole Object）<strong>P288</strong></li>
+</ol>
+<h4 id="含义：-7"><a href="#含义：-7" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li><p>类中的某些特性只被某些（并非全部）实例用到<strong>——新建一个子类，将上诉的那一部分特性移到子类中</strong></p>
+</li>
+<li><p>某些参数总是很自然地同时出现<strong>——以一个对象取代这些参数</strong></p>
+</li>
+<li><p>你从某个对象中取出若干值，将他们作为某一次函数调用时的参数<strong>——改为传递整个对象</strong></p>
+</li>
+</ol>
+<h4 id="阅读：-7"><a href="#阅读：-7" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+<li><strong>引入参数对象（Introduce Parameter Object）</strong><ul>
+<li>对于数据泥团（Data Clumps），可以运用对象包装这些数据。</li>
+<li>然后也可以发现可以移动到新类中的<strong>通用方法</strong>（常常是对包装的数据处理代码段），这样就进一步地降低了代码的理解和修改难度</li>
+</ul>
+</li>
+<li><strong>保持对象完整（Preserve Whole Object）</strong><ul>
+<li>原因在于：万一函数将来需要新的数据项，就需要修改所有的调用处</li>
+<li>而对象则可以简单的增加信息，函数就能获取到新的数据项，而不修改方法参数。如果这样会使得你的代码结构恶化，那就不要使用该方法</li>
+<li>对于函数只传递对象的期中一项数据，那么只传递数值还是传递对象？</li>
+<li>也许传递对象会有一点的性能问题，但是更重要的在于对象之间的依赖关系</li>
+<li>如果被调用的函数使用了来自另一个对象的很多项数据，这可能意味着该函数应该被定义在那些数据所属的对象中，即需要考虑<strong>搬移函数（Move Method）</strong></li>
+</ul>
+</li>
+</ol>
+<h4 id=""><a href="#" class="headerlink" title=" "></a> </h4><h2 id="3-9-基本类型偏执（Primitive-Obsession）"><a href="#3-9-基本类型偏执（Primitive-Obsession）" class="headerlink" title="3.9 基本类型偏执（Primitive Obsession）"></a>3.9 基本类型偏执（Primitive Obsession）</h2><h4 id="解释：-7"><a href="#解释：-7" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>大多数编程环境都允许将数据组织成有意义的形式，结构体、类等</li>
+<li>对象的一个极大价值在于：他们模糊了基本数据类型和体积较大的类之间的界限？</li>
+<li>例如：以类String、Date表示字符串和日期类，进而进入对象编程的世界</li>
+</ul>
+<h4 id="方法：-8"><a href="#方法：-8" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>以对象取代数据项（Replace Data Value with Object）<strong>P175</strong></li>
+<li>以类取代类型码（Replace Type Code with Class）<strong>P218</strong></li>
+<li>以子类取代类型码（Replace Type Code with Subclasses）<strong>P223</strong></li>
+<li>以State/Strategy取代类型码（Replace Type Code with State/Strategy）<strong>P227</strong></li>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+<li>引入参数对象（Introduce Parameter Object）<strong>P295</strong></li>
+<li>以对象取代数组（Replace Array with Object ）<strong>P186</strong></li>
+</ol>
+<h4 id="含义：-8"><a href="#含义：-8" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你有一个数据项，需要与其他数据和行动为一起使用才有意义<strong>——将数据项编程对象</strong></li>
+<li>类之中有一个数值类型码，但它并不影响类的行为<strong>——以一个新的类替换该数值类型码</strong></li>
+<li>你有一个不可变的类型码，它会影响子类的行为<strong>——以子类取代这个类型码</strong></li>
+<li>你有一个类型码，它会影响类的行为，但你无法通过继承手法消除它<strong>——以状态对象取代类型码</strong></li>
+<li>类中的某些特性只被某些（并非全部）实例用到<strong>——新建一个子类，将上诉的那一部分特性移到子类中</strong></li>
+<li>某些参数总是很自然地同时出现<strong>——以一个对象取代这些参数</strong></li>
+<li>你有一个数组，其中的元素各自代表不同的东西<strong>——以对象代替数组。对于数组中的每个元素，以一个字段来表示</strong></li>
+</ol>
+<h4 id="阅读：-8"><a href="#阅读：-8" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>以对象取代数据项（Replace Data Value with Object）</strong><ul>
+<li>开发初期，使用简单的数据来表示简单的情况。后期可能发现需要改变的东西比较多，情况变得复杂起来</li>
+</ul>
+</li>
+<li><strong>以类取代类型码（Replace Type Code with Class）</strong><ul>
+<li>提高代码的可读性，能够提供运行期检测</li>
+<li>为类型类提供工厂函数，这样九可以确保正确的和法的对象呗创建出来</li>
+<li>只有当类型码是纯粹数据时（就是类型码不会在switch语句中引起行为变化），你才能以类取代他</li>
+<li>还需注意类型码不会因其数值不同而引起行为上的差异，宿主中的某些行为还是可以移动到类型中的</li>
+</ul>
+</li>
+<li><strong>以子类取代类型码（Replace Type Code with Subclasses）</strong><ul>
+<li>以类型码的宿主为基类，针对每一种类型建立相应的子类</li>
+<li>其主要作用是为了让<strong>Replace Conditional with Polymorphism</strong>得以实现，否则使用<strong>Replace Type Code with Class</strong>较为合适，风险也更将低</li>
+<li>还有一个原因是为了，将宿主类中的只于特定类型有关的属性或者方法移动到合适的子类中去</li>
+<li>这对未来新添加的行为更容易</li>
+</ul>
+</li>
+<li><strong>以State/Strategy取代类型码（Replace Type Code with State/Strategy）</strong><ul>
+<li>和<strong>Replace Type Code with Subclasses</strong>很相似，但是如果<strong>类型码的值在对象的生命周期里发生了变化</strong>或者其他原因使得宿主类不能被继承</li>
+<li><strong>类型码的值在对象的生命周期里发生了变化</strong>：这里可以引入一个中间层来完成转换，使它成为一个属性</li>
+<li>本重构使用State或Strategy模式，这两个模式非常相似，无论选择哪一个重构的过程都是相同的</li>
+<li>如果打算完成本项重构后使用<strong>Replace Conditional with Polymorphism</strong>，那么使用Strategy模式比较合适；如果打算搬移与状态相关的数据，而且把新建的对象视为一种变迁状态，那么使用State模式</li>
+</ul>
+</li>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+<li><strong>引入参数对象（Introduce Parameter Object）</strong><ul>
+<li>对于数据泥团（Data Clumps），可以运用对象包装这些数据。</li>
+<li>然后也可以发现可以移动到新类中的<strong>通用方法</strong>（常常是对包装的数据处理代码段），这样就进一步地降低了代码的理解和修改难度</li>
+</ul>
+</li>
+<li><strong>以对象取代数组（Replace Array with Object ）</strong><ul>
+<li>数组常用于容纳一组相似的对象，当用于存放不同的对象时，会导致难以记住顺序</li>
+<li>通过设置类来完成意义化语义</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小任务上的对象（类似money、range、zipcode）</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>不影响行为的类型码</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>与类型码相关的条件表达式</td>
+<td>3、4</td>
+<td></td>
+</tr>
+<tr>
+<td>一组应该总是被放在一起的字段</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>再参数列表中看到基本类型</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>发现自己正从数组中<strong>挑选</strong>数据</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-10-switch惊悚现身（Switch-Statements）"><a href="#3-10-switch惊悚现身（Switch-Statements）" class="headerlink" title="3.10 switch惊悚现身（Switch Statements）"></a>3.10 switch惊悚现身（Switch Statements）</h2><h4 id="解释：-8"><a href="#解释：-8" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>面向对象程序的一个最明显特征：少用switch或（case）语句，从本质上说，switch语句的问题在于重复，经常会发现同样的switch语句散部在不同的地点，如果要添加新的case语句就要找到所有的switch语句并修改它们</li>
+<li>大多数时候，一看到switch语句，就应该使用多态来代替他，但是对象单一函数中有些选择事例，且并不想改动它们，那么使用多态就显得杀鸡用牛刀，这时候使用<strong>Replace parameter with Explicit Methods</strong> 就不错</li>
+<li>当然也可以使用再if-else语句中</li>
+</ul>
+<h4 id="方法：-9"><a href="#方法：-9" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼函数（Extract Method）<strong>P110</strong></li>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+<li>以子类取代类型码（Replace Type Code with Subclasses）<strong>P223</strong></li>
+<li>以State/Strategy取代类型码（Replace Type Code with State/Strategy）<strong>P227</strong></li>
+<li>以多态取代条件表达式（Replace Conditional with Polymorphism）<strong>P255</strong></li>
+<li>以明确函数取代参数（Replace Parameter with Explicit Methods） <strong>P285</strong></li>
+<li>引入 Null 对象（Introduce Null Object）<strong>P260</strong></li>
+</ol>
+<h4 id="含义：-9"><a href="#含义：-9" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你有一段代码可以被组织再一起并独立起来<strong>——将这段代码放进一个独立函数中，并让函数名称解释该函数的作用</strong></li>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+<li>你有一个不可变的类型码，它会影响子类的行为<strong>——以子类取代这个类型码</strong></li>
+<li>你有一个类型码，它会影响类的行为，但你无法通过继承手法消除它<strong>——以状态对象取代类型码</strong></li>
+<li>你手上有个条件表达式，它根据对象类型的不同而选择不同的行为<strong>——将这个条件表达式的每个分支放进一个子类内的覆写函数中，然后将原始函数声明稳抽象函数</strong></li>
+<li>你有一个函数，期中完全取决于参数值而采取不同行为<strong>——针对该参数的每一个可能值，建立一个独立函数</strong></li>
+<li>你需要再三检查某对象是否为null<strong>——将null值替换为null对象</strong></li>
+</ol>
+<h4 id="阅读：-9"><a href="#阅读：-9" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><p><strong>提炼函数（Extract Method）</strong></p>
+<ul>
+<li>将两个函数相同的部分提取出来（相同的部分可以是：代码、流程等）</li>
+</ul>
+</li>
+<li><p><strong>搬移函数（Move Method）</strong></p>
+<ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+<li><p><strong>以子类取代类型码（Replace Type Code with Subclasses）</strong></p>
+<ul>
+<li>以类型码的宿主为基类，针对每一种类型建立相应的子类</li>
+<li>其主要作用是为了让<strong>Replace Conditional with Polymorphism</strong>得以实现，否则使用<strong>Replace Type Code with Class</strong>较为合适，风险也更将低</li>
+<li>还有一个原因是为了，将宿主类中的只于特定类型有关的属性或者方法移动到合适的子类中去</li>
+<li>这对未来新添加的行为更容易</li>
+</ul>
+</li>
+<li><p><strong>以State/Strategy取代类型码（Replace Type Code with State/Strategy）</strong></p>
+<ul>
+<li>和<strong>Replace Type Code with Subclasses</strong>很相似，但是如果<strong>类型码的值在对象的生命周期里发生了变化</strong>或者其他原因使得宿主类不能被继承</li>
+<li><strong>类型码的值在对象的生命周期里发生了变化</strong>：这里可以引入一个中间层来完成转换，使它成为一个属性</li>
+<li>本重构使用State或Strategy模式，这两个模式非常相似，无论选择哪一个重构的过程都是相同的</li>
+<li>如果打算完成本项重构后使用<strong>Replace Conditional with Polymorphism</strong>，那么使用Strategy模式比较合适；如果打算搬移与状态相关的数据，而且把新建的对象视为一种变迁状态，那么使用State模式</li>
+</ul>
+</li>
+<li><p><strong>以多态取代条件表达式（Replace Conditional with Polymorphism）</strong></p>
+<ul>
+<li>如果需要改用多态，只需建立一个新的子类，并再其中提供适当的函数</li>
+<li>类的用户不需要了解这个子类，这就大大降低了系统各部分之间的依赖，使系统升级更加容易</li>
+<li>也就是把对应类型case语句中的操作移动到子类当中去</li>
+</ul>
+</li>
+<li><p><strong>以明确函数取代参数（Replace Parameter with Explicit Methods）</strong></p>
+<ul>
+<li>可以使得接口变得更加清晰，和获得编译期检查</li>
+<li>也避免了检查所给的参数是否合格</li>
+</ul>
+</li>
+<li><p><strong>引入 Null 对象（Introduce Null Object）</strong></p>
+<ul>
+<li>为了减少重复判断某个数值是否为空，往往需要大量的过程代码</li>
+<li>使用空对象可以带来：减少重复的过程代码、可以像正常对象一样显示、不会破坏系统（设置和普通对象一样的方法&amp;特殊的返回值）</li>
+<li>但是存在一个问题是：有时会造成问题的侦查和查找上的困难</li>
+<li>重要的一点：空对象一定是一个常量，他们的任何成分都不应该发生变化，所以采用<strong>单例模式</strong>比较合适</li>
+<li>需要的是大多数客户代码都对空对象做出了相同的相应，其他不同的依然可以使用<code>isNull()</code>函数</li>
+<li>经常会看到空对象返回了其他的空对象，对于空对象<strong>调用了其他类的方法</strong>，同样可以制造空的对象（通过继承来完成）</li>
+<li>可以通过建立一个<strong>接口</strong>，来使得不能修改的类使用null对象</li>
+<li>Special Cas:特例的价值，可以降低你错误处理的开销</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>switch语句</td>
+<td>1、2、3、4、5</td>
+<td>按顺序</td>
+</tr>
+<tr>
+<td>单一函数中的switch语句</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>选择条件之一是null</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-11-平行继承体系（Parallel-Inheritance-Hierarchies）"><a href="#3-11-平行继承体系（Parallel-Inheritance-Hierarchies）" class="headerlink" title="3.11 平行继承体系（Parallel Inheritance Hierarchies）"></a>3.11 平行继承体系（Parallel Inheritance Hierarchies）</h2><h4 id="解释：-9"><a href="#解释：-9" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li><strong>parallel inheritance hierarchies</strong> 是 <strong>Shotgun Surgery</strong>的特殊情况</li>
+<li>在这种情况下，每当你为一个类添加一个新的子类，就必须要为另一个类添加一个子类</li>
+<li>如果看到某个继承体系的类名称前缀和另一个继承体系的完全相同，便是这种问题</li>
+<li>消除这种问题的一般策略是：让另一个继承体系的实例引用另一个继承体系的实例</li>
+</ul>
+<h4 id="方法：-10"><a href="#方法：-10" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+<li>搬移字段（Move Field）<strong>P146</strong></li>
+</ol>
+<h4 id="含义：-10"><a href="#含义：-10" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+<li>在你的程序中，某个字段被其所在的类之外的类更多的使用<strong>——再目标类新建一个字段，修改源字段的所有用户，令它们改用新字段</strong></li>
+</ol>
+<h4 id="阅读：-10"><a href="#阅读：-10" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>搬移函数（Move Method）</strong><ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+<li><strong>搬移字段（Move Field）</strong><ul>
+<li>再类之间移动状态和行为，是重构之中不可缺少的部分</li>
+<li>再使用<strong>Extract Class</strong>时，通常先搬移字段，后搬移函数</li>
+<li>对于该类中的许多函数都用到了该字段，采用<strong>Self Encapsulate Field</strong>，这样只有修改访问函数即可</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-12-冗赘类（Lazy-Class）"><a href="#3-12-冗赘类（Lazy-Class）" class="headerlink" title="3.12 冗赘类（Lazy Class）"></a>3.12 冗赘类（Lazy Class）</h2><h4 id="解释：-10"><a href="#解释：-10" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>每一个类都需要人，来维护，来理解</li>
+<li>对于哪些做工作较少，和不在使用的类，把他们从代码中删除</li>
+</ul>
+<h4 id="方法：-11"><a href="#方法：-11" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>折叠继承体系（Collapse Hierarchy）<strong>P344</strong></li>
+<li>将类内联化（Inline Class）<strong>P154</strong></li>
+</ol>
+<h4 id="含义：-11"><a href="#含义：-11" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>超类和子类之间无太大的区别<strong>——将他们合为一体</strong></li>
+<li>再你的程序中，某个字段被其所在的类之外的类更多的使用<strong>——再目标类新建一个字段，修改源字段的所有用户，令它们改用新字段</strong></li>
+</ol>
+<h4 id="阅读：-11"><a href="#阅读：-11" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>折叠继承体系（Collapse Hierarchy）</strong><ul>
+<li>对于没有带来价值的类，把它和子类合并起来</li>
+</ul>
+</li>
+<li><strong>将类内联化（Inline Class）</strong><ul>
+<li>正好与<strong>Extract Class</strong>相反，如果一个类不在承担足够的责任，不在有单独存在的理由</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-13-夸夸其谈未来性（Speculative-Generality-）"><a href="#3-13-夸夸其谈未来性（Speculative-Generality-）" class="headerlink" title="3.13 夸夸其谈未来性（Speculative Generality ）"></a>3.13 夸夸其谈未来性（Speculative Generality ）</h2><h4 id="解释：-11"><a href="#解释：-11" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>对未来可能出现的事物，事先完成</li>
+<li>或者某个函数或者类的唯一用户是测试用例，那么就把他们连同测试用例一起删除</li>
+<li>如果他们的用途是帮助用力检测正当的功能，可以留下</li>
+</ul>
+<h4 id="方法：-12"><a href="#方法：-12" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>折叠继承体系（Collapse Hierarchy）<strong>P344</strong></li>
+<li>将类内联化（Inline Class）<strong>P154</strong></li>
+<li>移除参数（Remove Parameter ）<strong>P277</strong></li>
+<li>函数改名（Rename Method）<strong>P273</strong></li>
+</ol>
+<h4 id="含义：-12"><a href="#含义：-12" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>超类和子类之间无太大的区别<strong>——将他们合为一体</strong></li>
+<li>再你的程序中，某个字段被其所在的类之外的类更多的使用<strong>——再目标类新建一个字段，修改源字段的所有用户，令它们改用新字段</strong></li>
+<li>函数本体不在需要某个参数<strong>——将该参数去除</strong></li>
+<li>函数名称未能揭示函数的用途<strong>——修改函数名称</strong></li>
+</ol>
+<h4 id="阅读：-12"><a href="#阅读：-12" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>折叠继承体系（Collapse Hierarchy）</strong><ul>
+<li>对于没有带来价值的类，把它和子类合并起来</li>
+</ul>
+</li>
+<li><strong>将类内联化（Inline Class）</strong><ul>
+<li>正好与<strong>Extract Class</strong>相反，如果一个类不在承担足够的责任，不在有单独存在的理由</li>
+</ul>
+</li>
+<li><strong>移除参数（Remove Parameter ）</strong><ul>
+<li>对于多态，就需特殊考虑了。因为某个参数可能需要再另一个状态里使用</li>
+</ul>
+</li>
+<li><strong>函数改名（Rename Method）</strong><ul>
+<li>将复杂的处理过程分解成小函数，所以需要设置好小函数的名称，代码首先是为了人写的，其次才是计算机</li>
+<li>可以先暂时使用新函数调用旧函数，来保证小步前进</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-14-令人迷惑的暂时字段（Temporary-Field）"><a href="#3-14-令人迷惑的暂时字段（Temporary-Field）" class="headerlink" title="3.14 令人迷惑的暂时字段（Temporary Field）"></a>3.14 令人迷惑的暂时字段（Temporary Field）</h2><h4 id="解释：-12"><a href="#解释：-12" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li><strong>对象</strong>内的某个实例变量仅为某种特定情况而设，这样的代码会让人不易理解</li>
+<li>在一个类中有一个复杂的算法，需要使用到好几个变量来完成，为了避免使用过长的参数列表，则使用字段来表示。但是这些变量只在这个算法里使用，所以使用<strong>Extract Class</strong>比较好，使之变成一个函数对象</li>
+</ul>
+<h4 id="方法：-13"><a href="#方法：-13" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+</ol>
+<h4 id="含义：-13"><a href="#含义：-13" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>某个类做了应该由两个类做的事<strong>——建立一个新类，将相关字段和函数从旧类搬移到新类</strong></li>
+</ol>
+<h4 id="阅读：-13"><a href="#阅读：-13" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-15-过度耦合的消息链（Message-Chains）"><a href="#3-15-过度耦合的消息链（Message-Chains）" class="headerlink" title="3.15 过度耦合的消息链（Message Chains）"></a>3.15 过度耦合的消息链（Message Chains）</h2><h4 id="解释：-13"><a href="#解释：-13" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>用户向一个对象请求另一个对象，然后后者又请求另一个对象，然后再请求另一个对象…….这就是消息链</li>
+<li>这样的耦合度代码，使得一旦对象发生了任何关系上的变化，都会导致客户端不得不做出修改</li>
+<li>并不是所有的函数链都是不好的，要根据实际情况分析</li>
+</ul>
+<h4 id="方法：-14"><a href="#方法：-14" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>隐藏委托关系（Hide Delegate）<strong>P157</strong></li>
+</ol>
+<h4 id="含义：-14"><a href="#含义：-14" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>客户通过一个委托类来调用另一个对象<strong>——再服务类上建立客户所需要的所有函数，用以隐藏委托关系</strong></li>
+</ol>
+<h4 id="阅读：-14"><a href="#阅读：-14" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>隐藏委托关系（Hide Delegate）</strong><ul>
+<li>封装是对象的最关键特征之一，意味着每个对象都应该尽可能少了解系统的其他部分，这样一来，一旦发生变化，需要了解这一变化的对象就比较少</li>
+<li>可以随时取消这一层委托（Client-&gt;Server-&gt;Delegate）</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-16-中间人（Middle-Man）"><a href="#3-16-中间人（Middle-Man）" class="headerlink" title="3.16 中间人（Middle Man）"></a>3.16 中间人（Middle Man）</h2><h4 id="解释：-14"><a href="#解释：-14" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>对象的基本特征之一就是封装——对外部世界隐藏其内部细节</li>
+<li>人们也许会过度使用委托，可能看到某个类的接口有一半的函数都委托了给其他类，可以采用<strong>Inline Method</strong></li>
+<li>如果中间人还有更多的行为，可以使用<strong>Replace Delegate with Inheritance</strong></li>
+</ul>
+<h4 id="方法：-15"><a href="#方法：-15" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>移除中间人（Remove Middle Man）<strong>P160</strong></li>
+<li>内联函数（Inline Method）<strong>P117</strong></li>
+<li>以继承取代委托（Replace Delegate with Inheritance）<strong>P355</strong></li>
+</ol>
+<h4 id="含义：-15"><a href="#含义：-15" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>某个类做了过多的简单委托动作<strong>——让客户直接调用受托类</strong></li>
+<li>一个函数的本体与名称一样清楚易懂<strong>——在函数调用点插入函数本体，然后移除该函数</strong></li>
+<li>你在两个类之间使用委托关系，并经常为整个接口编写许多极简单的委托函数<strong>——让委托类继承受托类</strong></li>
+</ol>
+<h4 id="阅读：-15"><a href="#阅读：-15" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>移除中间人（Remove Middle Man）</strong><ul>
+<li>这个是<strong>Hide Delegate</strong>的相反过程，临界点在于是否<strong>过度委托</strong>，当然把握这个<strong>临界点</strong>是比较难说的</li>
+<li>但也不用在意临界点，只要不断重构就好了</li>
+</ul>
+</li>
+<li><strong>内联函数（Inline Method）</strong><ul>
+<li>这和<strong>Extract Method</strong>是一个相反的过程，核心在于程序是否清晰易读，是否重复等</li>
+<li>使用该方法的情况二：你手上有一群组织不合理的函数，你可以把它们都内联到一个大型函数中，再从中提取组织合理的小函数</li>
+<li>使用该方法的情况三：对于使用了太多间接层，使得系统中的函数几乎都是对另一个函数的调用</li>
+</ul>
+</li>
+<li><strong>以继承取代委托（Replace Delegate with Inheritance）</strong><ul>
+<li>和<strong>Replace Inheritance with Delegate</strong> 刚好相反，对于的是编写简单的方法（类似调用等）</li>
+<li><strong>注意两点：</strong>一是如果没有使用受托类的全部方法，就不应该执行此重构，因为子类总是遵循超类的接口；二是受托被对象不止一个其他对象共享，而且受托对象是可变的，因为这样就无法在共享数据了。数据共享必须是委托关系承当的一种责任，你无法把它转给继承关系。</li>
+<li></li>
+</ul>
+</li>
+</ol>
+<h2 id="3-17-狎昵关系（Inappropriate-Intimacy）"><a href="#3-17-狎昵关系（Inappropriate-Intimacy）" class="headerlink" title="3.17 狎昵关系（Inappropriate Intimacy）"></a>3.17 狎昵关系（Inappropriate Intimacy）</h2><h4 id="解释：-15"><a href="#解释：-15" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>两个类过分地探究互相的私有成分</li>
+</ul>
+<h4 id="方法：-16"><a href="#方法：-16" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+<li>搬移字段（Move Field）<strong>P146</strong></li>
+<li>将双向关联改为单向关联（Change Bidirectional Association to Unidirectional）<strong>P200</strong></li>
+<li>提炼类（Extract Class）<strong>P149</strong></li>
+</ol>
+<h4 id="含义：-16"><a href="#含义：-16" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+<li>在你的程序中，某个字段被其所在的类之外的类更多的使用<strong>——再目标类新建一个字段，修改源字段的所有用户，令它们改用新字段</strong></li>
+<li>两个类之间有双向关联，但期中一个类如今不在需要另一个类的特性<strong>——去除不必要的关联</strong></li>
+<li>某个类做了应该由两个类做的事<strong>——建立一个新类，将相关字段和函数从旧类搬移到新类</strong></li>
+</ol>
+<h4 id="阅读：-16"><a href="#阅读：-16" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>搬移函数（Move Method）</strong><ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+<li><strong>搬移字段（Move Field）</strong><ul>
+<li>再类之间移动状态和行为，是重构之中不可缺少的部分</li>
+<li>再使用<strong>Extract Class</strong>时，通常先搬移字段，后搬移函数</li>
+<li>对于该类中的许多函数都用到了该字段，采用<strong>Self Encapsulate Field</strong>，这样只有修改访问函数即可</li>
+</ul>
+</li>
+<li><strong>将双向关联改为单向关联（Change Bidirectional Association to Unidirectional）</strong><ul>
+<li>容易导致循环引用</li>
+<li>导致系统之间过于耦合，任何一个改动可能导致牵一发而动全身</li>
+</ul>
+</li>
+<li><strong>提炼类（Extract Class）</strong><ul>
+<li>一个类应该是明确的抽象，处理一些明确的责任。是改善并发的常用技术，因为可以为两个类分别加锁</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-18异曲同工的类（Alternative-Classes-with-Different-Interface）"><a href="#3-18异曲同工的类（Alternative-Classes-with-Different-Interface）" class="headerlink" title="3.18异曲同工的类（Alternative Classes with Different Interface）"></a>3.18异曲同工的类（Alternative Classes with Different Interface）</h2><h4 id="解释：-16"><a href="#解释：-16" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>两个函数做同一件事，却有着不同的函数签名，根据用途使用<strong>Rename Method</strong></li>
+<li>可以反复使用<strong>Move Method</strong>将某些行为移入类，直到两者协议一致</li>
+</ul>
+<h4 id="方法：-17"><a href="#方法：-17" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>搬移函数（Move Method）<strong>P142</strong></li>
+<li>提炼超类（Extract Superclass）<strong>P336</strong></li>
+</ol>
+<h4 id="含义：-17"><a href="#含义：-17" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你的程序中，有个函数与其所在的类之外的类进行更多的交流（往往是因为另一个类的数据）：调用后者，或者被前者调用<strong>——在该函数最常引用的类中建立一个与该方法行为类似的新函数。将旧函数编程一个单纯的委托函数，或者完全移除旧函数</strong></li>
+<li>两个类有相似的特性<strong>——为这两个类建立一个超类，将相同的特性移至超类</strong></li>
+</ol>
+<h4 id="阅读：-17"><a href="#阅读：-17" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>搬移函数（Move Method）</strong><ul>
+<li>“搬移函数”是重构理论的支柱</li>
+<li>对于该函数如果引用了源类的函数，需要考虑将源类作为参数传递给方法</li>
+</ul>
+</li>
+<li><strong>提炼超类（Extract Superclass）</strong><ul>
+<li>减少重复代码，在发现两个类的通性就可以考虑提炼超类</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-19-不完美的库类（Incomplete-Library-Class）"><a href="#3-19-不完美的库类（Incomplete-Library-Class）" class="headerlink" title="3.19 不完美的库类（Incomplete Library Class）"></a>3.19 不完美的库类（Incomplete Library Class）</h2><h4 id="解释：-17"><a href="#解释：-17" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>复用常被视为对象的终极目的，不过我们认为，复用的意义经常被高估</li>
+<li>所以对于想修改库类的一些方法，或者添加一些方法（ios中的类别）</li>
+</ul>
+<h4 id="方法：-18"><a href="#方法：-18" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>引入外加函数（Introduce Foreign Method）<strong>P162</strong></li>
+<li>引入本地扩展（Introduce Local Extension）<strong>P164</strong></li>
+</ol>
+<h4 id="含义：-18"><a href="#含义：-18" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你需要为你提供服务的类增加一个函数，但你无法修改这个类<strong>——在客户类中建立一个函数，并以第一参数形式传入一个服务类实例</strong></li>
+<li>你需要为服务类提供一些额外函数，但你无法修改这个类<strong>——建立一个新类，使它包含这些额外函数。让这个扩展品成为源类的子类或包装类</strong></li>
+</ol>
+<h4 id="阅读：-18"><a href="#阅读：-18" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>引入外加函数（Introduce Foreign Method）</strong><ul>
+<li>相当于扩展工具类的方法，相当于在进行了一次封装</li>
+</ul>
+</li>
+<li><strong>引入本地扩展（Introduce Local Extension）</strong><ul>
+<li>和<strong>Introdect Foreign Method</strong>类似，只是引入的方法数量大于等于两个或者需要大量引用该函数</li>
+<li>本地扩展包是一个独立的类（类别）</li>
+<li>可以选择子类hi或者包装类来完成工作，一般上推荐使用子类，因为可以向上兼容</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-20-幼稚的数据类（Data-Class）"><a href="#3-20-幼稚的数据类（Data-Class）" class="headerlink" title="3.20 幼稚的数据类（Data Class）"></a>3.20 幼稚的数据类（Data Class）</h2><h4 id="解释：-18"><a href="#解释：-18" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>就像数据容器，只有数据和数据的访问方法</li>
+<li>所以可能会看到该类的被其他类控制着</li>
+<li>对于集合的数据，使用<strong>Encapsulate Collection</strong></li>
+<li>不想让其他类修改的字段，使用<strong>Remove Seting Method</strong></li>
+<li>对于使用了这些取值函数或者设值函数，可以使用<strong>Move Method</strong>，将方法移动到该类中</li>
+</ul>
+<h4 id="方法：-19"><a href="#方法：-19" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>封装字段（Encapsulate Field）<strong>P206</strong></li>
+<li>封装集合（Encapsulate Collection）<strong>P208</strong></li>
+<li>移除设值函数（Remove Seting Method）<strong>P300</strong></li>
+<li>隐藏函数（Hide Method）<strong>P303</strong></li>
+</ol>
+<h4 id="含义：-19"><a href="#含义：-19" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>你的类中存在一个Public字段<strong>——将它声明为private，并提供相应的访问函数</strong></li>
+<li>有个函数返回一个集合<strong>——让这个函数返回该集合的一个只读副本，并在这个类中提供添加、移除集合元素的函数</strong></li>
+<li>类中的某个字段应该在对象创建的时候被赋值，然后就不再改变<strong>——去掉该字段的所有设值函数</strong></li>
+<li>有一个函数没有被其他类用到——将这个函数修改为<strong>privete</strong></li>
+</ol>
+<h4 id="阅读：-19"><a href="#阅读：-19" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>封装字段（Encapsulate Field）</strong><ul>
+<li>面向对象的首要的原则之一就是封装，或者成为“数据隐藏”</li>
+</ul>
+</li>
+<li><strong>封装集合（Encapsulate Collection）</strong><ul>
+<li>一个类提供了集合（array/list/set等），采用和不同数据类型的封装方法</li>
+<li>比如:push, pop等，避免用户修改整个集合的值</li>
+</ul>
+</li>
+<li><strong>移除设值函数（Remove Seting Method）</strong><ul>
+<li>将不可变字段设置为<strong>final</strong></li>
+</ul>
+</li>
+<li><strong>隐藏函数（Hide Method）</strong><ul>
+<li>重构往往促使你修改函数的可见度</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-21-被拒绝的遗赠（Refused-Bequest）"><a href="#3-21-被拒绝的遗赠（Refused-Bequest）" class="headerlink" title="3.21 被拒绝的遗赠（Refused Bequest）"></a>3.21 被拒绝的遗赠（Refused Bequest）</h2><h4 id="解释：-19"><a href="#解释：-19" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>对于继承来说，如果有不想要继承的数据或者方法，可以设计一个兄弟类，把用不到的方法和数据通过<strong>Push Down Method</strong>和<strong>Push Down Field</strong>移动到该类中</li>
+<li>常常可以听到，所有的超类都应该是抽象的</li>
+<li>如果子类复用超类的行为（实现），却不愿意支持超类的接口，就应该使用<strong>Replace Inheritance with Delegation</strong></li>
+</ul>
+<h4 id="方法：-20"><a href="#方法：-20" class="headerlink" title="方法："></a>方法：</h4><ol>
+<li>函数下移（Push Down Method）<strong>P328</strong></li>
+<li>字段下移（Push Down Field）<strong>P329</strong></li>
+<li>以委托取代继承（Replace Inheritance with Delegation）<strong>P352</strong></li>
+</ol>
+<h4 id="含义：-20"><a href="#含义：-20" class="headerlink" title="含义："></a>含义：</h4><ol>
+<li>超类中的某个函数只与部分（而非全部）子类有关<strong>——将这个函数移到相关的那些子类去</strong></li>
+<li>超类中的某个字段只被部分（而非全部）子类用到<strong>——将这个字段移到需要它的那些子类去</strong></li>
+<li>某个子类只使用超类接口中的一部分，或是根本不需要继承而来的数据<strong>——在子类中新建一个字段用以保存超类，调整子类函数，令它改而委托超类；然后渠道两者之间的继承关系</strong></li>
+</ol>
+<h4 id="阅读：-20"><a href="#阅读：-20" class="headerlink" title="阅读："></a>阅读：</h4><ol>
+<li><strong>函数下移（Push Down Method）</strong><ul>
+<li>把某些行为从超类移至特定的子类</li>
+</ul>
+</li>
+<li><strong>字段下移（Push Down Field）</strong><ul>
+<li>把某些字段从超类移至特定的子类</li>
+</ul>
+</li>
+<li><strong>以委托取代继承（Replace Inheritance with Delegation）</strong><ul>
+<li>需要在该类宅保存委托类的对象（iOS, delegaet, weak）</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-22-过多的注释（Comments）"><a href="#3-22-过多的注释（Comments）" class="headerlink" title="3.22 过多的注释（Comments）"></a>3.22 过多的注释（Comments）</h2><h4 id="解释：-20"><a href="#解释：-20" class="headerlink" title="解释："></a>解释：</h4><ul>
+<li>如果你感觉需要注释的时候，请先尝试重构，试着让代码来解释</li>
+</ul>
+<h4 id="方法：-21"><a href="#方法：-21" class="headerlink" title="方法："></a>方法：</h4><h4 id="含义：-21"><a href="#含义：-21" class="headerlink" title="含义："></a>含义：</h4><h4 id="阅读：-21"><a href="#阅读：-21" class="headerlink" title="阅读："></a>阅读：</h4>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年05月19日 00:16</p>
+        <p>原始链接： <a class="post-url" href="/2018/05/02/代码的坏味道/" title="代码的坏味道">https://ilifexiao.github.io/2018/05/02/代码的坏味道/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/05/02/代码的坏味道/&title=《代码的坏味道》 — iLife's Blog&pic=2018/05/02/代码的坏味道/face.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/05/02/代码的坏味道/&title=《代码的坏味道》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/05/02/代码的坏味道/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《代码的坏味道》 — iLife's Blog&url=https://ilifexiao.github.io/2018/05/02/代码的坏味道/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/05/02/代码的坏味道/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/05/02/代码的坏味道/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/重构/" class="color3">重构</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第三章、代码的坏味道"><span class="post-toc-text">第三章、代码的坏味道</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-重复代码（Duplicated-Code）"><span class="post-toc-text">3.1 重复代码（Duplicated Code）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法："><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义："><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读："><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-长函数（Long-Method）"><span class="post-toc-text">3.2 长函数（Long Method）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释："><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-1"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-1"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-1"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-过大的类（Larger-Class）"><span class="post-toc-text">3.3 过大的类（Larger Class）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-1"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-2"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-2"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-2"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-过长参数列（Long-Parameter-List）"><span class="post-toc-text">3.4 过长参数列（Long Parameter List）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-2"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-3"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-3"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-3"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5-发散式变化（Divergent-Change）"><span class="post-toc-text">3.5 发散式变化（Divergent Change）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-3"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-4"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-4"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-4"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-散弹式修改（Shotgun-Surgery）"><span class="post-toc-text">3.6 散弹式修改（Shotgun Surgery）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-4"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-5"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-5"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-5"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-依恋情节（Feature-Envy）"><span class="post-toc-text">3.7 依恋情节（Feature Envy）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-5"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-6"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-6"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-6"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-8-数据泥团（Data-Clump）"><span class="post-toc-text">3.8 数据泥团（Data Clump）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-6"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-7"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-7"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-7"><span class="post-toc-text">阅读：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#"><span class="post-toc-text"> </span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-9-基本类型偏执（Primitive-Obsession）"><span class="post-toc-text">3.9 基本类型偏执（Primitive Obsession）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-7"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-8"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-8"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-8"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-10-switch惊悚现身（Switch-Statements）"><span class="post-toc-text">3.10 switch惊悚现身（Switch Statements）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-8"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-9"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-9"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-9"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-11-平行继承体系（Parallel-Inheritance-Hierarchies）"><span class="post-toc-text">3.11 平行继承体系（Parallel Inheritance Hierarchies）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-9"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-10"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-10"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-10"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-12-冗赘类（Lazy-Class）"><span class="post-toc-text">3.12 冗赘类（Lazy Class）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-10"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-11"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-11"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-11"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-13-夸夸其谈未来性（Speculative-Generality-）"><span class="post-toc-text">3.13 夸夸其谈未来性（Speculative Generality ）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-11"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-12"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-12"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-12"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-14-令人迷惑的暂时字段（Temporary-Field）"><span class="post-toc-text">3.14 令人迷惑的暂时字段（Temporary Field）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-12"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-13"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-13"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-13"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-15-过度耦合的消息链（Message-Chains）"><span class="post-toc-text">3.15 过度耦合的消息链（Message Chains）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-13"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-14"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-14"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-14"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-16-中间人（Middle-Man）"><span class="post-toc-text">3.16 中间人（Middle Man）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-14"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-15"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-15"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-15"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-17-狎昵关系（Inappropriate-Intimacy）"><span class="post-toc-text">3.17 狎昵关系（Inappropriate Intimacy）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-15"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-16"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-16"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-16"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-18异曲同工的类（Alternative-Classes-with-Different-Interface）"><span class="post-toc-text">3.18异曲同工的类（Alternative Classes with Different Interface）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-16"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-17"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-17"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-17"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-19-不完美的库类（Incomplete-Library-Class）"><span class="post-toc-text">3.19 不完美的库类（Incomplete Library Class）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-17"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-18"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-18"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-18"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-20-幼稚的数据类（Data-Class）"><span class="post-toc-text">3.20 幼稚的数据类（Data Class）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-18"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-19"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-19"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-19"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-21-被拒绝的遗赠（Refused-Bequest）"><span class="post-toc-text">3.21 被拒绝的遗赠（Refused Bequest）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-19"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-20"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-20"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-20"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-22-过多的注释（Comments）"><span class="post-toc-text">3.22 过多的注释（Comments）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解释：-20"><span class="post-toc-text">解释：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法：-21"><span class="post-toc-text">方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#含义：-21"><span class="post-toc-text">含义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#阅读：-21"><span class="post-toc-text">阅读：</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/05/18/Hello-World/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Hello World
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/05/01/重构的原则/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">重构的原则</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

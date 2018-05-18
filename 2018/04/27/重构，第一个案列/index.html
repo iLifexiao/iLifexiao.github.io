@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>重构，第一个案列 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第一章、重构，第一个案列1.1 起点例子影片出租软件    Moive Rental Customer     priceCode:int daysRented:int      statement()    问题函数：123456789101112131415161718192021222324252627282930313233343536373839404142434445public st">
+<meta name="keywords" content="重构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重构，第一个案列">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/04/27/重构，第一个案列/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第一章、重构，第一个案列1.1 起点例子影片出租软件    Moive Rental Customer     priceCode:int daysRented:int      statement()    问题函数：123456789101112131415161718192021222324252627282930313233343536373839404142434445public st">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-18T16:16:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重构，第一个案列">
+<meta name="twitter:description" content="第一章、重构，第一个案列1.1 起点例子影片出租软件    Moive Rental Customer     priceCode:int daysRented:int      statement()    问题函数：123456789101112131415161718192021222324252627282930313233343536373839404142434445public st">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-重构，第一个案列" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      重构，第一个案列
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-04-27
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第一章、重构，第一个案列"><a href="#第一章、重构，第一个案列" class="headerlink" title="第一章、重构，第一个案列"></a>第一章、重构，第一个案列</h1><h2 id="1-1-起点"><a href="#1-1-起点" class="headerlink" title="1.1 起点"></a>1.1 起点</h2><h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>影片出租软件</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Moive</th>
+<th style="text-align:center">Rental</th>
+<th style="text-align:center">Customer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">priceCode:int</td>
+<td style="text-align:center">daysRented:int</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">statement()</td>
+</tr>
+</tbody>
+</table>
+<h4 id="问题函数："><a href="#问题函数：" class="headerlink" title="问题函数："></a>问题函数：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		<span class="keyword">double</span> thisAmount = <span class="number">0</span>;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement ();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// determine amounts for each line</span></span><br><span class="line">		<span class="keyword">switch</span> (each.getMovie().getPriceCode ()) &#123;</span><br><span class="line">        <span class="keyword">case</span> Movie.REGULAR:</span><br><span class="line">        	thisAmount += <span class="number">2</span>;</span><br><span class="line">        	<span class="keyword">if</span> (each.getDaysRented() &gt; <span class="number">2</span>)</span><br><span class="line">        		thisAmount += (each.getDaysRented ()-<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie. NEW_RELEASE:</span><br><span class="line">        	thisAmount += each.getDaysRented() * <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.CHILDRENS:</span><br><span class="line">        	thisAmount += <span class="number">1.5</span>:</span><br><span class="line">        	<span class="keyword">if</span> (each.getDaysRented() &gt; <span class="number">3</span>)</span><br><span class="line">        		thisAmount + (each.getDaysRented() -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">    	&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// add frequent renter points</span></span><br><span class="line">		frequentRenterPoints ++;</span><br><span class="line">		<span class="comment">// add bonus for a two day new release rental</span></span><br><span class="line">		<span class="keyword">if</span> ( (each.getMovie () .<span class="function">get <span class="title">PriceCode</span> <span class="params">()</span> </span>== Movie. NEW_RELEASE) </span><br><span class="line">			&amp;&amp; each. getDaysRented() &gt; <span class="number">1</span>) </span><br><span class="line">			frequentRenterPoints ++;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (thisAmount) + <span class="string">"\n"</span>;</span><br><span class="line">		totalAmount += thisAmount;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (totalAmount) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (frequentRenterPoints) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>其中<code>statement()</code>负责输出用户租借影片的信息，但是其包含的内容过多，做了许多其他类应该做的事情</li>
+<li>后期需要修改程序的时候（增加了影片类别、计费模式、新的输出样式等），将会导致大量的重复代码和维护问题</li>
+</ul>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li>发现要添加一个新的功能，在原有的代码结构上难以完成，就应该先重构该代码，使其添加容易进行</li>
+</ul>
+<h2 id="1-2-重构的第一步"><a href="#1-2-重构的第一步" class="headerlink" title="1.2 重构的第一步"></a>1.2 重构的第一步</h2><ul>
+<li>为即将修改的代码建立一组可靠的测试环境，避免引入其他BUG</li>
+<li>好的测试是重构的根本</li>
+<li>测试必须有自我检验功能</li>
+</ul>
+<h4 id="理由："><a href="#理由：" class="headerlink" title="理由："></a>理由：</h4><ul>
+<li>减少重构过程中的对比问题</li>
+</ul>
+<h2 id="1-3-分解并重组statement"><a href="#1-3-分解并重组statement" class="headerlink" title="1.3 分解并重组statement()"></a>1.3 分解并重组<code>statement()</code></h2><h4 id="问题：-1"><a href="#问题：-1" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>首先<code>statement()</code>函数过长。代码块越小，代码的功能就愈容易管理，代码的处理和移动速度也就月轻松</li>
+<li>降低代码的重复量</li>
+</ul>
+<h4 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li>将逻辑泥团，<strong>提炼函数（Extract Method）</strong>。比如<code>switch</code>语句</li>
+<li>每次修改都应该<strong>检测</strong>一次，避免意外地引入BUG（返回值错误、数据丢失等）</li>
+<li>提炼函数后，建议修改变量的名称。因为<strong>好的代码应该清晰地表达出自己的功能</strong>，变量名称是代码清晰的关键（<strong>阅读代码的对象是人类</strong>）</li>
+<li>现在大部分的IDE都提供了不同程度的重构功能</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		<span class="keyword">double</span> thisAmount = <span class="number">0</span>;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement ();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// determine amounts for each line</span></span><br><span class="line">        thisAmount = amountFor(each)</span><br><span class="line"></span><br><span class="line">		<span class="comment">// add frequent renter points</span></span><br><span class="line">		frequentRenterPoints ++;</span><br><span class="line">		<span class="comment">// add bonus for a two day new release rental</span></span><br><span class="line">		<span class="keyword">if</span> ( (each.getMovie () .<span class="function">get <span class="title">PriceCode</span> <span class="params">()</span> </span>== Movie. NEW_RELEASE) </span><br><span class="line">			&amp;&amp; each. getDaysRented() &gt; <span class="number">1</span>) </span><br><span class="line">			frequentRenterPoints ++;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (thisAmount) + <span class="string">"\n"</span>;</span><br><span class="line">		totalAmount += thisAmount;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (totalAmount) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (frequentRenterPoints) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">amountFor</span><span class="params">(Rental aRetal)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">switch</span> (aRetal.getMovie().getPriceCode ()) &#123;</span><br><span class="line">        <span class="keyword">case</span> Movie.REGULAR:</span><br><span class="line">        	result += <span class="number">2</span>;</span><br><span class="line">        	<span class="keyword">if</span> (aRetal.getDaysRented() &gt; <span class="number">2</span>)</span><br><span class="line">        		result += (aRetal.getDaysRented ()-<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.NEW_RELEASE:</span><br><span class="line">        	result += aRetal.getDaysRented() * <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.CHILDRENS:</span><br><span class="line">        	result += <span class="number">1.5</span>:</span><br><span class="line">        	<span class="keyword">if</span> (aRetal.getDaysRented() &gt; <span class="number">3</span>)</span><br><span class="line">        		result + (aRetal.getDaysRented() -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-1-搬移“金额计算”代码"><a href="#1-3-1-搬移“金额计算”代码" class="headerlink" title="1.3.1 搬移“金额计算”代码"></a>1.3.1 搬移“金额计算”代码</h3><h4 id="问题：-2"><a href="#问题：-2" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li><code>amountFor()</code>，这个函数只使用了来自<code>Rental</code>类的信息，却没有使用<code>Customer</code>类的信息</li>
+<li>在大多数情况下，函数应该放在它所使用的数据的所属对象内</li>
+</ul>
+<h4 id="解决：-2"><a href="#解决：-2" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li>将<code>amountFor()</code>，这个函数移动到<code>Rental</code>类中</li>
+<li>使用<strong>搬移函数(Move Method)</strong></li>
+</ul>
+<ul>
+<li><code>Retal</code>类</li>
+<li>修改函数信息（参数、变量名称、函数名称等）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Retal</span>...</span></span><br><span class="line"><span class="class"><span class="title">double</span> <span class="title">getChange</span>() </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">switch</span> (getMovie().getPriceCode ()) &#123;</span><br><span class="line">        <span class="keyword">case</span> Movie.REGULAR:</span><br><span class="line">        	result += <span class="number">2</span>;</span><br><span class="line">        	<span class="keyword">if</span> (each.getDaysRented() &gt; <span class="number">2</span>)</span><br><span class="line">        		result += (getDaysRented ()-<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie. NEW_RELEASE:</span><br><span class="line">        	result += getDaysRented() * <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.CHILDRENS:</span><br><span class="line">        	result += <span class="number">1.5</span>:</span><br><span class="line">        	<span class="keyword">if</span> (getDaysRented() &gt; <span class="number">3</span>)</span><br><span class="line">        		result + (getDaysRented() -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>尝试调用函数，检测代码是否正常工作</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span>...</span></span><br><span class="line"><span class="class"><span class="title">private</span> <span class="title">double</span> <span class="title">amountFor</span>(<span class="title">Rental</span> <span class="title">aRental</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> aRental.getChage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除<code>amountFor()</code>函数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		<span class="keyword">double</span> thisAmount = <span class="number">0</span>;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement ();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// determine amounts for each line</span></span><br><span class="line">        thisAmount = each.getChange()</span><br><span class="line"></span><br><span class="line">		<span class="comment">// add frequent renter points</span></span><br><span class="line">		frequentRenterPoints ++;</span><br><span class="line">		<span class="comment">// add bonus for a two day new release rental</span></span><br><span class="line">		<span class="keyword">if</span> ( (each.getMovie () .<span class="function">get <span class="title">PriceCode</span> <span class="params">()</span> </span>== Movie. NEW_RELEASE) </span><br><span class="line">			&amp;&amp; each. getDaysRented() &gt; <span class="number">1</span>) </span><br><span class="line">			frequentRenterPoints ++;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (thisAmount) + <span class="string">"\n"</span>;</span><br><span class="line">		totalAmount += thisAmount;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (totalAmount) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (frequentRenterPoints) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除一些多余变量<code>thisAmount</code></li>
+<li>尽量删除一些临时变量，避免大量参数互相传递，导致性能等问题发生</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement ();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// add frequent renter points</span></span><br><span class="line">		frequentRenterPoints ++;</span><br><span class="line">		<span class="comment">// add bonus for a two day new release rental</span></span><br><span class="line">		<span class="keyword">if</span> ( (each.getMovie () .<span class="function">get <span class="title">PriceCode</span> <span class="params">()</span> </span>== Movie. NEW_RELEASE) </span><br><span class="line">			&amp;&amp; each. getDaysRented() &gt; <span class="number">1</span>) </span><br><span class="line">			frequentRenterPoints ++;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (each.getChange()) + <span class="string">"\n"</span>;</span><br><span class="line">		totalAmount += each.getChange();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (totalAmount) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (frequentRenterPoints) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-2-提炼“常客积分计算”代码"><a href="#1-3-2-提炼“常客积分计算”代码" class="headerlink" title="1.3.2 提炼“常客积分计算”代码"></a>1.3.2 提炼“常客积分计算”代码</h3><h4 id="问题：-3"><a href="#问题：-3" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>积分的计算根据影片的类型二不同，但是不像收费规则那样变化那么多</li>
+</ul>
+<h4 id="解决：-3"><a href="#解决：-3" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li><strong>提炼函数（Extract Method）</strong></li>
+<li><strong>搬移函数（Move Method）</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement ();</span><br><span class="line">		frequentRenterPoints += each.getFrequentRenterPoints()</span><br><span class="line"></span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (each.getChange()) + <span class="string">"\n"</span>;</span><br><span class="line">		totalAmount += each.getChange();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (totalAmount) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (frequentRenterPoints) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rental</span>...</span></span><br><span class="line"><span class="class">    <span class="title">int</span> <span class="title">getFrequentRenterPoints</span>() </span>&#123;</span><br><span class="line">		<span class="comment">// add bonus for a two day new release rental</span></span><br><span class="line">		<span class="keyword">if</span> ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) </span><br><span class="line">            &amp;&amp; each.getDaysRented() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">2</span>;            </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>        </span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-3-去除临时变量"><a href="#1-3-3-去除临时变量" class="headerlink" title="1.3.3 去除临时变量"></a>1.3.3 去除临时变量</h3><h4 id="问题：-4"><a href="#问题：-4" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>临时变了可能是一个问题，会导致使得函数复杂</li>
+</ul>
+<h4 id="解决：-4"><a href="#解决：-4" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li><p>运用<strong>以查询代替临时变量（Replace Temp with Query）</strong></p>
+</li>
+<li><p>并利用<strong>查询函数（Query Method）</strong></p>
+<p>​</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">statement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"Rental Record for "</span>+ getName () +<span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement();</span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result +=<span class="string">"\t"</span> + each.getMovie().getTitle()+ <span class="string">"\t"</span>+</span><br><span class="line">			string.valueof (each.getChange()) + <span class="string">"\n"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"Amount owed is "</span>+ String.valueof (getTotalChange()) + <span class="string">"\n"</span>;</span><br><span class="line">	result += <span class="string">"You earned"</span>+ String.valueof (getTotalFrequentRenterPoints()) +</span><br><span class="line">		<span class="string">" frequent renter points"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">getTotalChange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    Enumeration rentals = _rentals.elements();</span><br><span class="line">    <span class="keyword">while</span>(rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement();</span><br><span class="line">        result += each.getChange();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getTotalFrequentRenterPoints</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    Enumeration rentals = _rentals.elements();</span><br><span class="line">    <span class="keyword">while</span>(rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement();</span><br><span class="line">        result += each.getFrequentRenterPoints()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="处理思考："><a href="#处理思考：" class="headerlink" title="处理思考："></a>处理思考：</h4><ul>
+<li>大多数重构都会减少代码量，但是这次却增加了代码量</li>
+<li>还有原本只需要一次的循环，现在却需要三次，降低了性能</li>
+<li>但是，现在还无需担心重构带来的性能问题，后续会慢慢解决的</li>
+</ul>
+<ul>
+<li>编写<code>htmlStatement()</code></li>
+<li>这里复用了原来的<code>statement()</code>函数的所有功能</li>
+<li>后期，可以使用<strong>构造模板函数（Form template Method）</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> string <span class="title">htmlStatement</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	Enumeration rentals = _rentals.elements();</span><br><span class="line">	String result= <span class="string">"&lt;h1&gt;Rental for&lt;em&gt; "</span>+ getName () +<span class="string">"&lt;/em&gt;&lt;/h1&gt;&lt;p&gt;\n"</span>;</span><br><span class="line">	<span class="keyword">while</span> (rentals.hasMoreElements()) &#123;</span><br><span class="line">		Rental each = (Rental) rentals.nextElement();</span><br><span class="line">		<span class="comment">// show figures for this rental</span></span><br><span class="line">		result += each.getMovie().getTitle()+ <span class="string">":"</span>+</span><br><span class="line">			string.valueof (each.getChange()) + <span class="string">"&lt;/br&gt;\n"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// add footer lines</span></span><br><span class="line">	result += <span class="string">"&lt;p&gt;You owed &lt;em&gt;"</span>+ String.valueof (getTotalChange()) + <span class="string">"&lt;/em&gt;&lt;p&gt;\n"</span>;</span><br><span class="line">	result += <span class="string">"On this rental you earned &lt;em&gt;"</span>+ String.valueof (getTotalFrequentRenterPoints()) +</span><br><span class="line">		<span class="string">"&lt;/em&gt; frequent renter points&lt;p&gt;"</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里客户可能需要修改影片的分类规则，然后与之相对应的费用、积分计算等都需要重新重构</li>
+<li>常常做的是，把因条件而异的代码替换掉</li>
+</ul>
+<h3 id="1-3-4-运用多态取代与价格相关的条件逻辑"><a href="#1-3-4-运用多态取代与价格相关的条件逻辑" class="headerlink" title="1.3.4 运用多态取代与价格相关的条件逻辑"></a>1.3.4 运用多态取代与价格相关的条件逻辑</h3><h4 id="问题：-5"><a href="#问题：-5" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>不要在另一个对象的属性基础上运用<code>switch</code>语句</li>
+<li>如果不得已使用，也应该放在自己的数据上使用，而不是别人的数据上使用</li>
+<li>这里暗示<code>getChange()</code>应该移动到<code>Moive</code>中</li>
+</ul>
+<ul>
+<li>添加了参数：<code>dayRented</code>用于表示租借的天数</li>
+<li>这里选择将<code>dayRented</code>作为参数传递，而不用<code>Moive</code>，原因在于<code>Moive</code>是变化的复杂类型，这种变化不稳定，需要尽量<strong>控制它的影响</strong></li>
+<li>将影片类型变化的东西全部放在影片里面</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Moive</span>...</span></span><br><span class="line"><span class="class"><span class="title">double</span> <span class="title">getChange</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">switch</span> (getPriceCode ()) &#123;</span><br><span class="line">        <span class="keyword">case</span> Movie.REGULAR:</span><br><span class="line">        	result += <span class="number">2</span>;</span><br><span class="line">        	<span class="keyword">if</span> (dayRented &gt; <span class="number">2</span>)</span><br><span class="line">        		result += (dayRented -<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie. NEW_RELEASE:</span><br><span class="line">        	result += dayRented * <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.CHILDRENS:</span><br><span class="line">        	result += <span class="number">1.5</span>:</span><br><span class="line">        	<span class="keyword">if</span> (dayRented &gt; <span class="number">3</span>)</span><br><span class="line">        		result + (dayRented -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getFrequentRenterPoints</span><span class="params">(<span class="keyword">int</span> dayRented)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((getPriceCode() == Movie.NEW_RELEASE) &amp;&amp; dayRented &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span>;            </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rental</span>...</span></span><br><span class="line"><span class="class">    <span class="title">doubel</span> <span class="title">getChange</span>() </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> _moive.getChagre(_dayRented)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getFrequentRenterPoints</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> _moive.getFrequentRenterPoints(_dayRented)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-5-终于……我们来到了继承"><a href="#1-3-5-终于……我们来到了继承" class="headerlink" title="1.3.5 终于……我们来到了继承"></a>1.3.5 终于……我们来到了继承</h3><h4 id="问题：-6"><a href="#问题：-6" class="headerlink" title="问题："></a>问题：</h4><ul>
+<li>影片有不同类型，根据不同类型做着不同的工作，但也有相似之处</li>
+<li>这里暗示我们可以建立<code>Moive</code>的子类，拥有不同的计费方法</li>
+<li>但是，一部影片可以在生命周期内修改自己的分类，一个对象却不能在生命周期里修改自己所属的类</li>
+<li>这里可以引入中间层来完成，<strong>state模式</strong></li>
+<li>这样，就可以在Price对象内进行子类化的动作，于是便可在任何必要的时候修改价格（更换对象的类型）</li>
+<li>联想到了<code>iOS</code>中的类簇<code>UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];</code></li>
+</ul>
+<h4 id="解决：-5"><a href="#解决：-5" class="headerlink" title="解决："></a>解决：</h4><ul>
+<li><strong>以State/Strategy取代类型码（Replace Type Code with State/Strategy）</strong></li>
+<li><strong>搬移方法（Move Method）</strong></li>
+<li><strong>以多态取代条件表达式（Replace Condition with Polymorphism ）</strong></li>
+</ul>
+<ul>
+<li>首先使用<strong>自封装字段（Self Encapsulate Filed）</strong></li>
+<li>使用<strong>设值函数来代替</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Moive</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Moive</span>(<span class="title">String</span> <span class="title">title</span>, <span class="title">int</span> <span class="title">priceCode</span>) </span>&#123;</span><br><span class="line">    	_title = title;</span><br><span class="line">    	<span class="comment">// 影片类型</span></span><br><span class="line">    	setPriceCode(priceCode)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后编译测试，确保没有破坏任何东西</li>
+<li>新建抽象<code>Price</code>类，设置抽象方法<code>getPriceCode()</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildrenPrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.CHILDRENS</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewReleasePrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.NEW_RELEASE</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegularPrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.REGULAR</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改<code>Moive</code>类内的”价格代号”访问函数</li>
+<li>子类可以赋值给父类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Moive</span>...</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">int</span> <span class="title">getPriceCode</span>() </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> _price.getPriceCode;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPriceCode</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (arg) &#123;</span><br><span class="line">            <span class="keyword">case</span> REFULAR:</span><br><span class="line">                _price = <span class="keyword">new</span> RegularPrice();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> CHILDRENS:</span><br><span class="line">                _price = <span class="keyword">new</span> ChildrenPrice();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> NEW_RELEASE:</span><br><span class="line">                _price = <span class="keyword">new</span> NewReleasePrice();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentExecption(<span class="string">"Incorrent Price Code"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 这里面就包含电影的类型</span></span><br><span class="line">	<span class="keyword">private</span> Price _price;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对<code>getCharge()</code>实施<code>Move Method</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Price</span>...</span></span><br><span class="line"><span class="class"><span class="title">double</span> <span class="title">getChange</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">switch</span> (getPriceCode ()) &#123;</span><br><span class="line">        <span class="keyword">case</span> Movie.REGULAR:</span><br><span class="line">        	result += <span class="number">2</span>;</span><br><span class="line">        	<span class="keyword">if</span> (dayRented &gt; <span class="number">2</span>)</span><br><span class="line">        		result += (dayRented -<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie. NEW_RELEASE:</span><br><span class="line">        	result += dayRented * <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Movie.CHILDRENS:</span><br><span class="line">        	result += <span class="number">1.5</span>:</span><br><span class="line">        	<span class="keyword">if</span> (dayRented &gt; <span class="number">3</span>)</span><br><span class="line">        		result + (dayRented -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">        	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Moive</span>...</span></span><br><span class="line"><span class="class"><span class="title">double</span> <span class="title">getChange</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> _price.getChange(dayRented)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以多态取代条件表达式（Replace Condition with Polymorphism ）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Price</span>...</span></span><br><span class="line"><span class="class">	<span class="title">abstract</span> <span class="title">double</span> <span class="title">getChange</span>(<span class="title">int</span> <span class="title">dayRented</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildrenPrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.CHILDRENS;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getChange</span><span class="params">(<span class="keyword">int</span> dayRented)</span> </span>&#123;</span><br><span class="line">   		<span class="keyword">double</span> result = <span class="number">1.5</span>:</span><br><span class="line">        <span class="keyword">if</span> (dayRented &gt; <span class="number">3</span>)</span><br><span class="line">            result + (dayRented -<span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewReleasePrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.NEW_RELEASE;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getChange</span><span class="params">(<span class="keyword">int</span> dayRented)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> dayRented * <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RegularPrice</span> <span class="keyword">extends</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPriceCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Moive.REGULAR;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getChange</span><span class="params">(<span class="keyword">int</span> dayRented)</span> </span>&#123;</span><br><span class="line">   		<span class="keyword">double</span> result += <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (dayRented &gt; <span class="number">2</span>)</span><br><span class="line">            result += (dayRented -<span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同样处理<code>getFrequentRenterPoints(int dayRented)</code></li>
+<li>这里不打算设置<code>getFrequentRenterPoints(int dayRented)</code>为抽象方法，设置为默认行为</li>
+<li>然后在特定的子类中覆盖该方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Moive</span>...</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">getFrequentRenterPoints</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> _price.getFrequentRenterPoints(dayRented);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Price</span>...</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">getFrequentRenterPoints</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewReleasePrice</span></span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">getFrequentRenterPoints</span>(<span class="title">int</span> <span class="title">dayRented</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (dayrented &gt; <span class="number">1</span>) ? <span class="number">2</span> :<span class="number">1</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年05月19日 00:16</p>
+        <p>原始链接： <a class="post-url" href="/2018/04/27/重构，第一个案列/" title="重构，第一个案列">https://ilifexiao.github.io/2018/04/27/重构，第一个案列/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/&title=《重构，第一个案列》 — iLife's Blog&pic=2018/04/27/重构，第一个案列/face.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/&title=《重构，第一个案列》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重构，第一个案列》 — iLife's Blog&url=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/04/27/重构，第一个案列/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/重构/" class="color3">重构</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一章、重构，第一个案列"><span class="post-toc-text">第一章、重构，第一个案列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-起点"><span class="post-toc-text">1.1 起点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子"><span class="post-toc-text">例子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题函数："><span class="post-toc-text">问题函数：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题："><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决："><span class="post-toc-text">解决：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-重构的第一步"><span class="post-toc-text">1.2 重构的第一步</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#理由："><span class="post-toc-text">理由：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-分解并重组statement"><span class="post-toc-text">1.3 分解并重组statement()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-1"><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决：-1"><span class="post-toc-text">解决：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-1-搬移“金额计算”代码"><span class="post-toc-text">1.3.1 搬移“金额计算”代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-2"><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决：-2"><span class="post-toc-text">解决：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-2-提炼“常客积分计算”代码"><span class="post-toc-text">1.3.2 提炼“常客积分计算”代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-3"><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决：-3"><span class="post-toc-text">解决：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-3-去除临时变量"><span class="post-toc-text">1.3.3 去除临时变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-4"><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决：-4"><span class="post-toc-text">解决：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#处理思考："><span class="post-toc-text">处理思考：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-4-运用多态取代与价格相关的条件逻辑"><span class="post-toc-text">1.3.4 运用多态取代与价格相关的条件逻辑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-5"><span class="post-toc-text">问题：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-5-终于……我们来到了继承"><span class="post-toc-text">1.3.5 终于……我们来到了继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题：-6"><span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决：-5"><span class="post-toc-text">解决：</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/05/01/重构的原则/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          重构的原则
+        
+      </span>
+    </a>
+  
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/重构/" style="font-size: 20px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
