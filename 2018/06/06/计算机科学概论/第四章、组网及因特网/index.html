@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>组网及因特网 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第四章、组网及因特网1. 网络基础1.1 网络分类范围 个人域网（PAN） 局域网（LAN） 城域网（MAN） 广域网（WAN）  领域 开放式网络 专用网络  1.2 网络拓扑 总线 星型（随着个人计算机的流行，开始流行）  2. 协议 为了网络运行可靠，所建立的网络活动规则   在总线型拓扑中，使用的是 带冲突检测载波侦听多址访问 CSMA/CD（Carrier Sense, Multiple">
+<meta name="keywords" content="计算机科学概论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组网及因特网">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第四章、组网及因特网1. 网络基础1.1 网络分类范围 个人域网（PAN） 局域网（LAN） 城域网（MAN） 广域网（WAN）  领域 开放式网络 专用网络  1.2 网络拓扑 总线 星型（随着个人计算机的流行，开始流行）  2. 协议 为了网络运行可靠，所建立的网络活动规则   在总线型拓扑中，使用的是 带冲突检测载波侦听多址访问 CSMA/CD（Carrier Sense, Multiple">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-11T06:10:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组网及因特网">
+<meta name="twitter:description" content="第四章、组网及因特网1. 网络基础1.1 网络分类范围 个人域网（PAN） 局域网（LAN） 城域网（MAN） 广域网（WAN）  领域 开放式网络 专用网络  1.2 网络拓扑 总线 星型（随着个人计算机的流行，开始流行）  2. 协议 为了网络运行可靠，所建立的网络活动规则   在总线型拓扑中，使用的是 带冲突检测载波侦听多址访问 CSMA/CD（Carrier Sense, Multiple">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机科学概论/第四章、组网及因特网" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      组网及因特网
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第四章、组网及因特网"><a href="#第四章、组网及因特网" class="headerlink" title="第四章、组网及因特网"></a>第四章、组网及因特网</h1><h2 id="1-网络基础"><a href="#1-网络基础" class="headerlink" title="1. 网络基础"></a>1. 网络基础</h2><h3 id="1-1-网络分类"><a href="#1-1-网络分类" class="headerlink" title="1.1 网络分类"></a>1.1 网络分类</h3><h4 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h4><ul>
+<li>个人域网（PAN）</li>
+<li>局域网（LAN）</li>
+<li>城域网（MAN）</li>
+<li>广域网（WAN）</li>
+</ul>
+<h4 id="领域"><a href="#领域" class="headerlink" title="领域"></a>领域</h4><ul>
+<li>开放式网络</li>
+<li>专用网络</li>
+</ul>
+<h3 id="1-2-网络拓扑"><a href="#1-2-网络拓扑" class="headerlink" title="1.2 网络拓扑"></a>1.2 网络拓扑</h3><ul>
+<li>总线</li>
+<li>星型（随着个人计算机的流行，开始流行）</li>
+</ul>
+<h3 id="2-协议"><a href="#2-协议" class="headerlink" title="2. 协议"></a>2. 协议</h3><blockquote>
+<p>为了网络运行可靠，所建立的网络活动规则</p>
+</blockquote>
+<ul>
+<li><p>在总线型拓扑中，使用的是 <strong>带冲突检测载波侦听多址访问</strong> CSMA/CD（Carrier Sense, Multiple Access with Collision Detection）</p>
+</li>
+<li><p>在星型拓扑中，使用的是 <strong>带冲突避免的载波侦听多址访问</strong> CSMA/CA（Carrier Sense, Multiple Access with Collision Avoidance）</p>
+</li>
+</ul>
+<h3 id="3-组合网络"><a href="#3-组合网络" class="headerlink" title="3. 组合网络"></a>3. 组合网络</h3><h4 id="中继器"><a href="#中继器" class="headerlink" title="中继器"></a>中继器</h4><ul>
+<li>在两个中线之间简单地传递信号</li>
+</ul>
+<h4 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h4><ul>
+<li>类似中继器，带有检测报文的目的地址，可以不互相干扰对方的网络</li>
+</ul>
+<h4 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h4><blockquote>
+<p>本质上就是具有多连接的网桥</p>
+</blockquote>
+<ul>
+<li>可以连接多个总线</li>
+</ul>
+<h4 id="互联网（internet）"><a href="#互联网（internet）" class="headerlink" title="互联网（internet）"></a>互联网（internet）</h4><blockquote>
+<p>注意区分和因特网（Internet）,I是大写的，指的是一种独特的、世界范围的互联网</p>
+</blockquote>
+<ul>
+<li>一个网络与互联网链接的“点“称为<strong>网关（gateway）</strong></li>
+<li>网络之间通过路由器连接起来形成互联网</li>
+</ul>
+<h3 id="4-进程之间通信的方法"><a href="#4-进程之间通信的方法" class="headerlink" title="4. 进程之间通信的方法"></a>4. 进程之间通信的方法</h3><ul>
+<li>进程之间通信通常采用<strong>C/S架构</strong></li>
+<li>还有一种是对等服务<strong>P2P（peer-to-peer）</strong>，表示通过对等模型通信而不是通过对等网络通信</li>
+</ul>
+<h3 id="5-分布式系统"><a href="#5-分布式系统" class="headerlink" title="5. 分布式系统"></a>5. 分布式系统</h3><ul>
+<li><strong>集群计算</strong>指的是一种分布式系统，由多个独立的计算机密切合作，有着成本低、稳定性高、维护成本低等优点，同时具有高可用性（不会因为一台计算机发生故障就不能使用）和负载平衡（自动分配压力）</li>
+<li><strong>网格计算</strong>，通过分享自己闲置的计算机资源，如威斯康星大学的<strong>Condor</strong>系统和伯克利开放式网络计算平台<strong>BOINC</strong>，凭借云计算，将计算机资源按需分配，就像水电一样</li>
+</ul>
+<h3 id="6-因特网（Internet）"><a href="#6-因特网（Internet）" class="headerlink" title="6. 因特网（Internet）"></a>6. 因特网（Internet）</h3><ul>
+<li>起源于20世纪60年代的研究项目，由美国政府资助，通过美国国防高级研究计划局发起</li>
+<li><a href="www.internet2.org">Internet2</a> 第二代因特网，被定义为纯学术系统，目标是对高带宽通信的因特网应用，如远程医疗</li>
+</ul>
+<h4 id="6-1-因特网的体系结构"><a href="#6-1-因特网的体系结构" class="headerlink" title="6.1 因特网的体系结构"></a>6.1 因特网的体系结构</h4><ul>
+<li>通过ISP来提供网络服务</li>
+<li>由于较旧的网络服务基础，通常会有<strong>最后一英里的问题</strong>，通过DSL调制解调器、电缆调制解调器、卫星上行链路、光纤入户等解决</li>
+</ul>
+<h4 id="6-2-因特网编制"><a href="#6-2-因特网编制" class="headerlink" title="6.2 因特网编制"></a>6.2 因特网编制</h4><ul>
+<li><a href="https://baike.baidu.com/item/IP/224599?fr=aladdin" target="_blank" rel="noopener">IP</a>（Internet Protocol），现在用的是IPV4的32位编码模式 ，后面将采用IPV6的128位编码模式</li>
+<li>由<strong>因特网名称与数字地址分配机构</strong>（Internet Corporation for Assigned Names and Numbers, <strong>ICANN</strong>）来分配IP地址</li>
+<li>通常使用<strong>点分十进制</strong>来记住IP地址，通过<a href="https://baike.baidu.com/item/dns/427444" target="_blank" rel="noopener"><strong>域名服务器</strong></a> 来完成域名到IP地址的转换</li>
+</ul>
+<h4 id="6-3-因特网应用"><a href="#6-3-因特网应用" class="headerlink" title="6.3 因特网应用"></a>6.3 因特网应用</h4><ul>
+<li>新闻网络传送协议（Network News Transfer Protocol, NNTP）</li>
+<li>文件传送协议 (File Transfer Protocol, FTP)</li>
+<li>远程登录（Telnet）</li>
+<li>安全外壳（SSH）</li>
+<li>超文本传输协议（Hyper Text Transfer Protocol, HTTP）</li>
+<li>简单邮件传送协议（Simple Mail Transfer Protocol, SMTP）</li>
+<li>因特网邮件访问协议（Internet Mail Access Protocol, IMAP）</li>
+<li>邮局协议第三版（Post Office Protocol version 3, POP3）</li>
+<li>即时聊天（instant Messaging, IM）</li>
+<li>因特网语言协议（Voice over Internet Protocol, VoIP）</li>
+</ul>
+<h4 id="VoIP"><a href="#VoIP" class="headerlink" title="VoIP"></a>VoIP</h4><ul>
+<li>在美国，拥有国家传统电话公司的政府把VoIP看做一种威胁，对他们征收很高的税，或者宣布不合法</li>
+<li>有三种类型：VoIP软电话（soft phone）、模拟电话适配器（analog telephone adapter）、嵌入式VoIP电话</li>
+</ul>
+<p>许多的流媒体服务（视频），采用单播、多播技术，CDN（content delivery network）来均衡负载</p>
+<h3 id="7-万维网"><a href="#7-万维网" class="headerlink" title="7. 万维网"></a>7. 万维网</h3><blockquote>
+<p>源于 <a href="https://baike.baidu.com/item/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF%C2%B7%E6%9D%8E?fromtitle=%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF-%E6%9D%8E&amp;fromid=11205121" target="_blank" rel="noopener">蒂姆·伯纳斯-李</a> 所作出的努力</p>
+</blockquote>
+<ul>
+<li>通过浏览器提供的 <a href="https://baike.baidu.com/item/url" target="_blank" rel="noopener">URL</a> 来访问信息</li>
+<li>HTML &amp; XML 等协议，由<a href="www.w3c.org">W3C</a>制定，</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月11日 14:10</p>
+        <p>原始链接： <a class="post-url" href="/2018/06/06/计算机科学概论/第四章、组网及因特网/" title="组网及因特网">https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/&title=《组网及因特网》 — iLife's Blog&pic=https://picsum.photos/375/200/?image=645" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/&title=《组网及因特网》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《组网及因特网》 — iLife's Blog&url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第四章、组网及因特网/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机科学概论/" class="color3">计算机科学概论</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第四章、组网及因特网"><span class="post-toc-text">第四章、组网及因特网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-网络基础"><span class="post-toc-text">1. 网络基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-网络分类"><span class="post-toc-text">1.1 网络分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#范围"><span class="post-toc-text">范围</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#领域"><span class="post-toc-text">领域</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-网络拓扑"><span class="post-toc-text">1.2 网络拓扑</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-协议"><span class="post-toc-text">2. 协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-组合网络"><span class="post-toc-text">3. 组合网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#中继器"><span class="post-toc-text">中继器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网桥"><span class="post-toc-text">网桥</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#交换机"><span class="post-toc-text">交换机</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互联网（internet）"><span class="post-toc-text">互联网（internet）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-进程之间通信的方法"><span class="post-toc-text">4. 进程之间通信的方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-分布式系统"><span class="post-toc-text">5. 分布式系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-因特网（Internet）"><span class="post-toc-text">6. 因特网（Internet）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-1-因特网的体系结构"><span class="post-toc-text">6.1 因特网的体系结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-2-因特网编制"><span class="post-toc-text">6.2 因特网编制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-3-因特网应用"><span class="post-toc-text">6.3 因特网应用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#VoIP"><span class="post-toc-text">VoIP</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-万维网"><span class="post-toc-text">7. 万维网</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/07/计算机科学概论/第五章、算法/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          算法
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/06/06/计算机科学概论/第三章、操作系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">操作系统</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

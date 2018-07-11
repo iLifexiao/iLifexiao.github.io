@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>操作系统 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第三章、操作系统1. 软件分类 应用软件和实用软件之间的界限是模糊的，比如Windows的浏览器是实用软件，还是作为微软打压其他市场的软件  1.1 应用软件 第三方软件  1.2 系统软件 实用软件 操作系统  2. 操作系统的组件内核（Kernel）包含的组件 文件管理程序（file manager） 设备驱动程序（外部设备） 内存管理程序（页面调度，virtual memory：能够提供超出">
+<meta name="keywords" content="计算机科学概论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第三章、操作系统1. 软件分类 应用软件和实用软件之间的界限是模糊的，比如Windows的浏览器是实用软件，还是作为微软打压其他市场的软件  1.1 应用软件 第三方软件  1.2 系统软件 实用软件 操作系统  2. 操作系统的组件内核（Kernel）包含的组件 文件管理程序（file manager） 设备驱动程序（外部设备） 内存管理程序（页面调度，virtual memory：能够提供超出">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-11T06:11:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统">
+<meta name="twitter:description" content="第三章、操作系统1. 软件分类 应用软件和实用软件之间的界限是模糊的，比如Windows的浏览器是实用软件，还是作为微软打压其他市场的软件  1.1 应用软件 第三方软件  1.2 系统软件 实用软件 操作系统  2. 操作系统的组件内核（Kernel）包含的组件 文件管理程序（file manager） 设备驱动程序（外部设备） 内存管理程序（页面调度，virtual memory：能够提供超出">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机科学概论/第三章、操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      操作系统
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第三章、操作系统"><a href="#第三章、操作系统" class="headerlink" title="第三章、操作系统"></a>第三章、操作系统</h1><h3 id="1-软件分类"><a href="#1-软件分类" class="headerlink" title="1. 软件分类"></a>1. 软件分类</h3><blockquote>
+<p>应用软件和实用软件之间的界限是模糊的，比如Windows的浏览器是实用软件，还是作为微软打压其他市场的软件</p>
+</blockquote>
+<h4 id="1-1-应用软件"><a href="#1-1-应用软件" class="headerlink" title="1.1 应用软件"></a>1.1 应用软件</h4><ul>
+<li>第三方软件</li>
+</ul>
+<h4 id="1-2-系统软件"><a href="#1-2-系统软件" class="headerlink" title="1.2 系统软件"></a>1.2 系统软件</h4><ul>
+<li>实用软件</li>
+<li>操作系统</li>
+</ul>
+<h3 id="2-操作系统的组件"><a href="#2-操作系统的组件" class="headerlink" title="2. 操作系统的组件"></a>2. 操作系统的组件</h3><h4 id="内核（Kernel）包含的组件"><a href="#内核（Kernel）包含的组件" class="headerlink" title="内核（Kernel）包含的组件"></a>内核（Kernel）包含的组件</h4><ul>
+<li>文件管理程序（file manager）</li>
+<li>设备驱动程序（外部设备）</li>
+<li>内存管理程序（页面调度，virtual memory：能够提供超出内存的服务）</li>
+</ul>
+<h3 id="3-系统启动"><a href="#3-系统启动" class="headerlink" title="3. 系统启动"></a>3. 系统启动</h3><blockquote>
+<p>boot strapping 引导，简称：booting</p>
+</blockquote>
+<ul>
+<li><p>将操作系统引导到主存储器，其中主存储器的一部分 <strong>ROM</strong>，用来表示<strong>CPU</strong>初始必须找到的程序的位置</p>
+</li>
+<li><p>同时对于ROM还有基本输出输出（<strong>I/O</strong>）,在操作系统被引导之前就启动</p>
+</li>
+<li><p>就是现在流行的BIOS（Basic Input/Output System）或者EFI（Extensible Firmware Interface）、以及许多嵌入式设备的通用固件环境CFE（common firmware environment）</p>
+</li>
+</ul>
+<h3 id="4-程序调度"><a href="#4-程序调度" class="headerlink" title="4. 程序调度"></a>4. 程序调度</h3><h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><blockquote>
+<p>满足以下所有的条件的才会出现死锁</p>
+</blockquote>
+<ol>
+<li>存在对不可共享资源的竞争</li>
+<li>这些资源的分配不是完整的</li>
+<li>一个资源一旦被分配，那么就不能强制收回</li>
+</ol>
+<h3 id="5-安全性"><a href="#5-安全性" class="headerlink" title="5. 安全性"></a>5. 安全性</h3><ul>
+<li>可靠软件的开发不在受牵制与操作系统，它贯穿与整个软件的开发过程，成为软件工程</li>
+</ul>
+<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><ol>
+<li>在瓦尔登湖一书中，梭罗认为，我们已经变成自己工具的工具；也就是说，我们为了使用工具，需要付出的其他成本</li>
+</ol>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月11日 14:11</p>
+        <p>原始链接： <a class="post-url" href="/2018/06/06/计算机科学概论/第三章、操作系统/" title="操作系统">https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/&title=《操作系统》 — iLife's Blog&pic=https://picsum.photos/375/200/?image=101" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/&title=《操作系统》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统》 — iLife's Blog&url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/06/06/计算机科学概论/第三章、操作系统/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机科学概论/" class="color3">计算机科学概论</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第三章、操作系统"><span class="post-toc-text">第三章、操作系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-软件分类"><span class="post-toc-text">1. 软件分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-应用软件"><span class="post-toc-text">1.1 应用软件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-系统软件"><span class="post-toc-text">1.2 系统软件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-操作系统的组件"><span class="post-toc-text">2. 操作系统的组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内核（Kernel）包含的组件"><span class="post-toc-text">内核（Kernel）包含的组件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-系统启动"><span class="post-toc-text">3. 系统启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-程序调度"><span class="post-toc-text">4. 程序调度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#死锁"><span class="post-toc-text">死锁</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-安全性"><span class="post-toc-text">5. 安全性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#思考"><span class="post-toc-text">思考</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/06/计算机科学概论/第四章、组网及因特网/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          组网及因特网
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/06/03/计算机科学概论/第二章、数据操控/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据操控</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

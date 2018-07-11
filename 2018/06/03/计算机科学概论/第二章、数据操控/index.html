@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据操控 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第二章、数据操控指令集 RISC（精简指令集计算机） CISC（复杂指令集计算机）  机器指令分为三类：一、数据传输类 将一个数据从一个位置移动到另一个位置   各种I/O操作    二、算数逻辑类 基本的算数运算 bool 运算 位移（SHIFT、ROTATE）  三、控制类 jump/branch等  程序执行CPU内部的两个专用寄存器：指令寄存器、程序寄存器，一个用于存储当前执行的指令，另一">
+<meta name="keywords" content="计算机科学概论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据操控">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第二章、数据操控指令集 RISC（精简指令集计算机） CISC（复杂指令集计算机）  机器指令分为三类：一、数据传输类 将一个数据从一个位置移动到另一个位置   各种I/O操作    二、算数逻辑类 基本的算数运算 bool 运算 位移（SHIFT、ROTATE）  三、控制类 jump/branch等  程序执行CPU内部的两个专用寄存器：指令寄存器、程序寄存器，一个用于存储当前执行的指令，另一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-11T06:11:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据操控">
+<meta name="twitter:description" content="第二章、数据操控指令集 RISC（精简指令集计算机） CISC（复杂指令集计算机）  机器指令分为三类：一、数据传输类 将一个数据从一个位置移动到另一个位置   各种I/O操作    二、算数逻辑类 基本的算数运算 bool 运算 位移（SHIFT、ROTATE）  三、控制类 jump/branch等  程序执行CPU内部的两个专用寄存器：指令寄存器、程序寄存器，一个用于存储当前执行的指令，另一">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机科学概论/第二章、数据操控" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      数据操控
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-03
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第二章、数据操控"><a href="#第二章、数据操控" class="headerlink" title="第二章、数据操控"></a>第二章、数据操控</h1><h3 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h3><ol>
+<li>RISC（精简指令集计算机）</li>
+<li>CISC（复杂指令集计算机）</li>
+</ol>
+<h4 id="机器指令分为三类："><a href="#机器指令分为三类：" class="headerlink" title="机器指令分为三类："></a>机器指令分为三类：</h4><h4 id="一、数据传输类"><a href="#一、数据传输类" class="headerlink" title="一、数据传输类"></a>一、数据传输类</h4><blockquote>
+<p>将一个数据从一个位置移动到另一个位置</p>
+</blockquote>
+<ul>
+<li><p>各种I/O操作</p>
+</li>
+<li></li>
+</ul>
+<h4 id="二、算数逻辑类"><a href="#二、算数逻辑类" class="headerlink" title="二、算数逻辑类"></a>二、算数逻辑类</h4><ul>
+<li>基本的算数运算</li>
+<li>bool 运算</li>
+<li>位移（SHIFT、ROTATE）</li>
+</ul>
+<h4 id="三、控制类"><a href="#三、控制类" class="headerlink" title="三、控制类"></a>三、控制类</h4><ul>
+<li>jump/branch等</li>
+</ul>
+<h3 id="程序执行"><a href="#程序执行" class="headerlink" title="程序执行"></a>程序执行</h3><p>CPU内部的两个专用寄存器：指令寄存器、程序寄存器，一个用于存储当前执行的指令，另一个用于包含一下条执行的指令的地址</p>
+<h4 id="机器周期"><a href="#机器周期" class="headerlink" title="机器周期"></a>机器周期</h4><p>取址 -&gt; 译码 -&gt; 执行</p>
+<h4 id="比较计算机的能力"><a href="#比较计算机的能力" class="headerlink" title="比较计算机的能力"></a>比较计算机的能力</h4><ul>
+<li>计算机的<strong>时钟（clock）</strong>是一个振荡器的电路，能够生成用于协调机器活动的脉冲——执行速度就越快（hertz, Hz）</li>
+<li>比较的前提条件是，两者相同设计的CPU。如果CPU不同，一般就让他们比较相同工作下的性能</li>
+</ul>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><h4 id="AND"><a href="#AND" class="headerlink" title="AND"></a>AND</h4><ul>
+<li>屏蔽（掩码），常常用于图像装换</li>
+<li>位映射，（用1，来测试对应位置的数值是否存在）</li>
+</ul>
+<h4 id="OR"><a href="#OR" class="headerlink" title="OR"></a>OR</h4><ul>
+<li>同样可以做到AND的用法</li>
+</ul>
+<h4 id="XOR"><a href="#XOR" class="headerlink" title="XOR"></a>XOR</h4><ul>
+<li>用于反转，如反转颜色</li>
+</ul>
+<h3 id="循环位置运算和位移运算"><a href="#循环位置运算和位移运算" class="headerlink" title="循环位置运算和位移运算"></a>循环位置运算和位移运算</h3><h4 id="循环位移"><a href="#循环位移" class="headerlink" title="循环位移"></a>循环位移</h4><ul>
+<li>顾名思义</li>
+</ul>
+<h4 id="逻辑位移"><a href="#逻辑位移" class="headerlink" title="逻辑位移"></a>逻辑位移</h4><ul>
+<li>空出的位置使用0</li>
+<li>保留符号位的位移成为<strong>算数位移</strong></li>
+</ul>
+<h3 id="设备通信"><a href="#设备通信" class="headerlink" title="设备通信"></a>设备通信</h3><blockquote>
+<p>通过控制器作为中间层来完成通信</p>
+</blockquote>
+<ul>
+<li><a href="https://baike.baidu.com/item/usb/99797?fr=aladdin" target="_blank" rel="noopener">USB</a> (Intel公司研发)/<a href="https://baike.baidu.com/item/FireWire" target="_blank" rel="noopener">FireWire</a> (Apple公司研发)等接口</li>
+</ul>
+<p><a href="https://baike.baidu.com/item/DMA/2385376?fr=aladdin" target="_blank" rel="noopener">DMA</a> 直接存储器存取</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月11日 14:11</p>
+        <p>原始链接： <a class="post-url" href="/2018/06/03/计算机科学概论/第二章、数据操控/" title="数据操控">https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/&title=《数据操控》 — iLife's Blog&pic=https://picsum.photos/375/200/?image=110" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/&title=《数据操控》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据操控》 — iLife's Blog&url=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/06/03/计算机科学概论/第二章、数据操控/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机科学概论/" class="color3">计算机科学概论</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第二章、数据操控"><span class="post-toc-text">第二章、数据操控</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指令集"><span class="post-toc-text">指令集</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#机器指令分为三类："><span class="post-toc-text">机器指令分为三类：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、数据传输类"><span class="post-toc-text">一、数据传输类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、算数逻辑类"><span class="post-toc-text">二、算数逻辑类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、控制类"><span class="post-toc-text">三、控制类</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#程序执行"><span class="post-toc-text">程序执行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#机器周期"><span class="post-toc-text">机器周期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#比较计算机的能力"><span class="post-toc-text">比较计算机的能力</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#逻辑运算"><span class="post-toc-text">逻辑运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AND"><span class="post-toc-text">AND</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#OR"><span class="post-toc-text">OR</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XOR"><span class="post-toc-text">XOR</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#循环位置运算和位移运算"><span class="post-toc-text">循环位置运算和位移运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#循环位移"><span class="post-toc-text">循环位移</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逻辑位移"><span class="post-toc-text">逻辑位移</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设备通信"><span class="post-toc-text">设备通信</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/06/计算机科学概论/第三章、操作系统/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          操作系统
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/05/31/计算机科学概论/第一章、数据存储/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据存储</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

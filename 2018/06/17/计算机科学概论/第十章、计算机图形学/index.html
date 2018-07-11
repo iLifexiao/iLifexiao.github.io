@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机图形学 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第十章、计算机图形学 许多人认为计算机动画在不久将来会取代整个影视产业对传统的演员、布景和照片的需求  计算机图形学包含的方面： 图形、图表 图形化用户界面的开发 照片的操作 视频游戏的制作 动画电影的生成  1. 计算机图形学的范畴2D图形学 用于生成图像  图像处理 用来图像分析，进行模式识别  3D图形学 建造三维场景的数字编码版本，然后模拟照相的过程，产生这些场景的图像 适用于交互视频游戏">
+<meta name="keywords" content="计算机科学概论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机图形学">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第十章、计算机图形学 许多人认为计算机动画在不久将来会取代整个影视产业对传统的演员、布景和照片的需求  计算机图形学包含的方面： 图形、图表 图形化用户界面的开发 照片的操作 视频游戏的制作 动画电影的生成  1. 计算机图形学的范畴2D图形学 用于生成图像  图像处理 用来图像分析，进行模式识别  3D图形学 建造三维场景的数字编码版本，然后模拟照相的过程，产生这些场景的图像 适用于交互视频游戏">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-11T06:10:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机图形学">
+<meta name="twitter:description" content="第十章、计算机图形学 许多人认为计算机动画在不久将来会取代整个影视产业对传统的演员、布景和照片的需求  计算机图形学包含的方面： 图形、图表 图形化用户界面的开发 照片的操作 视频游戏的制作 动画电影的生成  1. 计算机图形学的范畴2D图形学 用于生成图像  图像处理 用来图像分析，进行模式识别  3D图形学 建造三维场景的数字编码版本，然后模拟照相的过程，产生这些场景的图像 适用于交互视频游戏">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机科学概论/第十章、计算机图形学" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计算机图形学
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第十章、计算机图形学"><a href="#第十章、计算机图形学" class="headerlink" title="第十章、计算机图形学"></a>第十章、计算机图形学</h1><blockquote>
+<p>许多人认为计算机动画在不久将来会取代整个影视产业对传统的演员、布景和照片的需求</p>
+</blockquote>
+<h4 id="计算机图形学包含的方面："><a href="#计算机图形学包含的方面：" class="headerlink" title="计算机图形学包含的方面："></a>计算机图形学包含的方面：</h4><ol>
+<li>图形、图表</li>
+<li>图形化用户界面的开发</li>
+<li>照片的操作</li>
+<li>视频游戏的制作</li>
+<li>动画电影的生成</li>
+</ol>
+<h2 id="1-计算机图形学的范畴"><a href="#1-计算机图形学的范畴" class="headerlink" title="1. 计算机图形学的范畴"></a>1. 计算机图形学的范畴</h2><h4 id="2D图形学"><a href="#2D图形学" class="headerlink" title="2D图形学"></a>2D图形学</h4><ul>
+<li>用于生成图像</li>
+</ul>
+<h4 id="图像处理"><a href="#图像处理" class="headerlink" title="图像处理"></a>图像处理</h4><ul>
+<li>用来图像分析，进行模式识别</li>
+</ul>
+<h4 id="3D图形学"><a href="#3D图形学" class="headerlink" title="3D图形学"></a>3D图形学</h4><ul>
+<li>建造三维场景的数字编码版本，然后模拟照相的过程，产生这些场景的图像</li>
+<li>适用于交互视频游戏和动画电影</li>
+<li>三维人机接口</li>
+</ul>
+<h2 id="2-3D图形概述"><a href="#2-3D图形概述" class="headerlink" title="2. 3D图形概述"></a>2. 3D图形概述</h2><h3 id="创建和显示的过程"><a href="#创建和显示的过程" class="headerlink" title="创建和显示的过程"></a>创建和显示的过程</h3><h4 id="1-建模"><a href="#1-建模" class="headerlink" title="1. 建模"></a>1. 建模</h4><ul>
+<li>由数字编码数据和算法构成</li>
+</ul>
+<h4 id="2-渲染"><a href="#2-渲染" class="headerlink" title="2. 渲染"></a>2. 渲染</h4><ul>
+<li>通过投影显示二维图像，还要取决于你的<strong>图像视窗</strong>的大小，来显示不同的样貌</li>
+<li>还需要计算场景中物体和光线如何交互</li>
+<li>当确定了每个像素的外观后，结果被表示为图像的位图，集中存储在称为<strong>帧缓冲区（frame buffer）</strong>的存储区中</li>
+</ul>
+<h4 id="3-显示"><a href="#3-显示" class="headerlink" title="3. 显示"></a>3. 显示</h4><h2 id="3-建模"><a href="#3-建模" class="headerlink" title="3. 建模"></a>3. 建模</h2><blockquote>
+<p>3D计算机图形学的其实阶段与戏剧舞台制作方式十分相似：必须设计出布景，收集或者搭建所需的道具</p>
+</blockquote>
+<ul>
+<li>在计算机图形学中的术语，布景成为<strong>场景（scene）</strong>，道具成为<strong>物体（object）</strong></li>
+</ul>
+<h3 id="3-1-单个物体建模"><a href="#3-1-单个物体建模" class="headerlink" title="3.1 单个物体建模"></a>3.1 单个物体建模</h3><h4 id="3-1-1-形状"><a href="#3-1-1-形状" class="headerlink" title="3.1.1 形状"></a>3.1.1 形状</h4><blockquote>
+<p>网格表示所有物体的形状确立了渲染处理的同意方法——可以更高效地渲染整个场景</p>
+</blockquote>
+<p>​    在3D图形中的物体的形状通常被描述成称为<strong>平面片（planar patch）</strong>，的小平面集合，期中每一个都是一个多边形。这些多边形形成了<strong>多边形网络（polygonal mesh）</strong>，被近似于描述物体的形状。通过使用小平面，近似值可以达到所需的精度。</p>
+<ul>
+<li>多边形网格中的平面片经常选择三角形，因为在三维空间中最少使用三个点表示一个平面</li>
+<li>一个物体的多边形网格可以展现可以通过多种途径获得，如：以所需形状的精确的集合描述开始  $$ r^2 = x^2+y^2+z^2 $$</li>
+<li>基于这个公式，我们可以建立球上的经线和纬线方程，标识这些线的交叉点，然后使用这些点作为多边形网格中的顶点</li>
+</ul>
+<h4 id="更一般的形状可以使用更复杂的分析方法来描述"><a href="#更一般的形状可以使用更复杂的分析方法来描述" class="headerlink" title="更一般的形状可以使用更复杂的分析方法来描述"></a>更一般的形状可以使用更复杂的分析方法来描述</h4><h4 id="贝赛尔曲线"><a href="#贝赛尔曲线" class="headerlink" title="贝赛尔曲线"></a>贝赛尔曲线</h4><ul>
+<li>在三维空间中只用几个称为控制点的点来定义曲线段（两个点表示端点，其他点表示曲线的弯曲方式）</li>
+<li><strong>贝塞尔曲面</strong>可以用来获得复杂表面的网格信息</li>
+</ul>
+<h4 id="蛮力获取物体表面的多边形结构"><a href="#蛮力获取物体表面的多边形结构" class="headerlink" title="蛮力获取物体表面的多边形结构"></a>蛮力获取物体表面的多边形结构</h4><ul>
+<li>通过类笔设备触摸表面，记录模型表面点的位置</li>
+</ul>
+<h4 id="对于非常复杂，难以用集合建模或手工数字化获得模型"><a href="#对于非常复杂，难以用集合建模或手工数字化获得模型" class="headerlink" title="对于非常复杂，难以用集合建模或手工数字化获得模型"></a>对于非常复杂，难以用集合建模或手工数字化获得模型</h4><ul>
+<li>通过编写自动构建所需形状的程序——<strong>程序化模型（procedural model）</strong></li>
+<li>对于相似而又唯一复杂的对象，使用<strong>分支规则</strong>，即<strong>语法分析器</strong>构建对象</li>
+</ul>
+<h4 id="粒子系统"><a href="#粒子系统" class="headerlink" title="粒子系统"></a>粒子系统</h4><blockquote>
+<p>将物体的基础结构模拟为一个大的粒子集合</p>
+</blockquote>
+<ul>
+<li>通过预定义的规则去移动系统中的粒子，来生成所需的形状</li>
+<li>如水、火苗的闪烁、云、拥挤的人群</li>
+</ul>
+<h4 id="分型"><a href="#分型" class="headerlink" title="分型"></a>分型</h4><blockquote>
+<p>豪斯多夫维数大于其拓扑维数的几何物体</p>
+</blockquote>
+<ul>
+<li>科赫雪花，通过重复地用相同的结构的较小版本替换结构中的直线段二形成的</li>
+<li>在3D图形领域经常是程序化模型的主干，用于生成山脉、蔬菜、云和烟的图像</li>
+</ul>
+<h4 id="3-3-2-表面特征"><a href="#3-3-2-表面特征" class="headerlink" title="3.3.2 表面特征"></a>3.3.2 表面特征</h4><ul>
+<li>通过<strong>纹理映射</strong>，将图像与一个物体的表面相关联</li>
+<li>在平坦的表面，纹理映射效果最好。如果必须大幅扭曲纹理图像区覆盖弯曲的表面，在接缝出纹理模式可能不与它本身融合，效果会不够逼真</li>
+</ul>
+<h4 id="3-3-3-寻求逼真的效果"><a href="#3-3-3-寻求逼真的效果" class="headerlink" title="3.3.3 寻求逼真的效果"></a>3.3.3 寻求逼真的效果</h4><ul>
+<li>人类皮肤的逼真模型（光渗透的表皮和真皮层的程度）</li>
+<li>头发（对风的外力、半透明特性、纹理深度、悬垂性）</li>
+<li>布（纹理、机械工程知识（拉伸、修剪等））</li>
+</ul>
+<h3 id="3-2-整个场景的建模"><a href="#3-2-整个场景的建模" class="headerlink" title="3.2 整个场景的建模"></a>3.2 整个场景的建模</h3><blockquote>
+<p>当场景中的物体得到充分的描述和数字化编码，被赋予了位置、大小和方向——场景图（scene graph）的数据结构</p>
+</blockquote>
+<ul>
+<li>包含与光源的特殊物体及表示相机的特殊物体的链接，期中记录了相机的位置、方向和焦点等特性</li>
+<li>类似传统的摄影工作室，但场景图描述的是一个虚拟的世界</li>
+<li>前景比背景更需要精度</li>
+<li>另一个设想是，场景由<strong>智能模型构成</strong>，会根据相机的移动，改变自身的特性</li>
+</ul>
+<h2 id="4-渲染"><a href="#4-渲染" class="headerlink" title="4. 渲染"></a>4. 渲染</h2><blockquote>
+<p>物体的外观是由物体发出（反射）的光决定的</p>
+</blockquote>
+<h4 id="4-1-光-表面交互"><a href="#4-1-光-表面交互" class="headerlink" title="4.1 光-表面交互"></a>4.1 光-表面交互</h4><ul>
+<li>照射到物体表面的光可能被反射、吸收、穿过等</li>
+</ul>
+<h4 id="4-2-裁剪、扫描转换和隐藏面的消除"><a href="#4-2-裁剪、扫描转换和隐藏面的消除" class="headerlink" title="4.2 裁剪、扫描转换和隐藏面的消除"></a>4.2 裁剪、扫描转换和隐藏面的消除</h4><ul>
+<li>渲染流水线，通过一个投影中心形成的椎体，可以不用考虑椎体外边的物体（称为裁剪）</li>
+<li>然后确定剩余平面上的点，将像素和场景中的点关联起来（称为<strong>扫描转换</strong>），像素越高，渲染细节就越多</li>
+<li>也就是用到投影的技能，用光栅来表示</li>
+<li>然后还要去除那些被遮挡的点（称为<strong>隐藏面消除</strong>）</li>
+<li>关于隐藏面消除有许多做法，比如后面消除法、画家算法、<a href="https://blog.csdn.net/pizi0475/article/details/8445538" target="_blank" rel="noopener">Z缓冲区</a></li>
+</ul>
+<h4 id="4-3-着色"><a href="#4-3-着色" class="headerlink" title="4.3 着色"></a>4.3 着色</h4><ul>
+<li><strong>平面着色</strong>，表示的是多边形网格本身的图像，而不是用网格建模的物体图像</li>
+<li>Gouraud着色、Phong着色</li>
+<li>凹凸映射，表面外观朝向加上一个小的变量</li>
+</ul>
+<h4 id="4-4-渲染——流水线硬件"><a href="#4-4-渲染——流水线硬件" class="headerlink" title="4.4 渲染——流水线硬件"></a>4.4 渲染——流水线硬件</h4><blockquote>
+<p>只实现了局部照明模式，对于全局照明模式，没有考虑到两个物体之间的交互</p>
+</blockquote>
+<ul>
+<li>在电子电路中实现了，通过超大规模集成电路（VLSI）技术已经被微缩为芯片，自动完成整个渲染线的工作</li>
+<li>GPU</li>
+<li>为了减少对特定图形平台的依赖，使用了（OpenGL、Direct3D等标准软件接口）</li>
+<li>但对于物体的交互，在这常常用时<strong>模拟投影</strong>，来实现</li>
+</ul>
+<h2 id="5-处理全局照明"><a href="#5-处理全局照明" class="headerlink" title="5. 处理全局照明"></a>5. 处理全局照明</h2><ul>
+<li>光线跟踪、辐射度；两种方法都极为精准，但是费时</li>
+</ul>
+<h4 id="光线跟踪"><a href="#光线跟踪" class="headerlink" title="光线跟踪"></a>光线跟踪</h4><blockquote>
+<p>沿着光线反向跟踪以找到他的光源的过程</p>
+</blockquote>
+<ul>
+<li>缺点是只跟踪镜面反射，可以通过<strong>分布式光线跟踪</strong>来去除这种效果</li>
+<li>通过递归调用来找到光源，费时，一般在电影工作室使用</li>
+</ul>
+<h4 id="辐射度"><a href="#辐射度" class="headerlink" title="辐射度"></a>辐射度</h4><blockquote>
+<p>考虑通过两个平面片对之间的辐射光能的总和，采取了更加区域化的方法</p>
+</blockquote>
+<ul>
+<li>辐射的光能本质是散射光</li>
+<li>一个物体对另一个物体的影响程度称为<strong>形状因子（form factor）</strong></li>
+<li>因为需要考虑许多面片，计算量是很大的</li>
+<li>优点在与物体的显示不受相机的影响，捕获了光的许多微特征，如<strong>渗色（color bleeding）</strong></li>
+</ul>
+<h2 id="6-动画"><a href="#6-动画" class="headerlink" title="6. 动画"></a>6. 动画</h2>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月11日 14:10</p>
+        <p>原始链接： <a class="post-url" href="/2018/06/17/计算机科学概论/第十章、计算机图形学/" title="计算机图形学">https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/&title=《计算机图形学》 — iLife's Blog&pic=https://picsum.photos/375/200/?image=369" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/&title=《计算机图形学》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机图形学》 — iLife's Blog&url=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/06/17/计算机科学概论/第十章、计算机图形学/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机科学概论/" class="color3">计算机科学概论</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第十章、计算机图形学"><span class="post-toc-text">第十章、计算机图形学</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#计算机图形学包含的方面："><span class="post-toc-text">计算机图形学包含的方面：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-计算机图形学的范畴"><span class="post-toc-text">1. 计算机图形学的范畴</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2D图形学"><span class="post-toc-text">2D图形学</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#图像处理"><span class="post-toc-text">图像处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3D图形学"><span class="post-toc-text">3D图形学</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3D图形概述"><span class="post-toc-text">2. 3D图形概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建和显示的过程"><span class="post-toc-text">创建和显示的过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-建模"><span class="post-toc-text">1. 建模</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-渲染"><span class="post-toc-text">2. 渲染</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-显示"><span class="post-toc-text">3. 显示</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-建模"><span class="post-toc-text">3. 建模</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-单个物体建模"><span class="post-toc-text">3.1 单个物体建模</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1-1-形状"><span class="post-toc-text">3.1.1 形状</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更一般的形状可以使用更复杂的分析方法来描述"><span class="post-toc-text">更一般的形状可以使用更复杂的分析方法来描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#贝赛尔曲线"><span class="post-toc-text">贝赛尔曲线</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#蛮力获取物体表面的多边形结构"><span class="post-toc-text">蛮力获取物体表面的多边形结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对于非常复杂，难以用集合建模或手工数字化获得模型"><span class="post-toc-text">对于非常复杂，难以用集合建模或手工数字化获得模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#粒子系统"><span class="post-toc-text">粒子系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分型"><span class="post-toc-text">分型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3-2-表面特征"><span class="post-toc-text">3.3.2 表面特征</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3-3-寻求逼真的效果"><span class="post-toc-text">3.3.3 寻求逼真的效果</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-整个场景的建模"><span class="post-toc-text">3.2 整个场景的建模</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-渲染"><span class="post-toc-text">4. 渲染</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1-光-表面交互"><span class="post-toc-text">4.1 光-表面交互</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2-裁剪、扫描转换和隐藏面的消除"><span class="post-toc-text">4.2 裁剪、扫描转换和隐藏面的消除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-3-着色"><span class="post-toc-text">4.3 着色</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-4-渲染——流水线硬件"><span class="post-toc-text">4.4 渲染——流水线硬件</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-处理全局照明"><span class="post-toc-text">5. 处理全局照明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#光线跟踪"><span class="post-toc-text">光线跟踪</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#辐射度"><span class="post-toc-text">辐射度</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-动画"><span class="post-toc-text">6. 动画</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/18/计算机科学概论/第十一章、人工智能/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          人工智能
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/06/16/计算机科学概论/第九章、数据库系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据库系统</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

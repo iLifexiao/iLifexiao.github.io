@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>人工智能 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="第十一章、人工智能 建造自主的机器人——能够感知和推理  1. 智能与机器 融合了心理学、神经学、数学、语言学以及机电工程学等其他学科相融合  1.1 智能体（agent） 对环境做的刺激做出响应的“装置”  智能体的学习形式1. 过程性知识（procedural knowledge） 反复试验的过程，出错受罚、正确奖励的过程中学习适当的反应  2. 陈述性知识（declarative knowl">
+<meta name="keywords" content="计算机科学概论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工智能">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="第十一章、人工智能 建造自主的机器人——能够感知和推理  1. 智能与机器 融合了心理学、神经学、数学、语言学以及机电工程学等其他学科相融合  1.1 智能体（agent） 对环境做的刺激做出响应的“装置”  智能体的学习形式1. 过程性知识（procedural knowledge） 反复试验的过程，出错受罚、正确奖励的过程中学习适当的反应  2. 陈述性知识（declarative knowl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/神经元.png">
+<meta property="og:image" content="https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/联想记忆的神经网络.png">
+<meta property="og:updated_time" content="2018-07-11T06:09:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人工智能">
+<meta name="twitter:description" content="第十一章、人工智能 建造自主的机器人——能够感知和推理  1. 智能与机器 融合了心理学、神经学、数学、语言学以及机电工程学等其他学科相融合  1.1 智能体（agent） 对环境做的刺激做出响应的“装置”  智能体的学习形式1. 过程性知识（procedural knowledge） 反复试验的过程，出错受罚、正确奖励的过程中学习适当的反应  2. 陈述性知识（declarative knowl">
+<meta name="twitter:image" content="https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/神经元.png">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机科学概论/第十一章、人工智能" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      人工智能
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/读书笔记/">读书笔记</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-06-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="第十一章、人工智能"><a href="#第十一章、人工智能" class="headerlink" title="第十一章、人工智能"></a>第十一章、人工智能</h1><blockquote>
+<p>建造自主的机器人——能够感知和推理</p>
+</blockquote>
+<h2 id="1-智能与机器"><a href="#1-智能与机器" class="headerlink" title="1. 智能与机器"></a>1. 智能与机器</h2><ul>
+<li>融合了心理学、神经学、数学、语言学以及机电工程学等其他学科相融合</li>
+</ul>
+<h3 id="1-1-智能体（agent）"><a href="#1-1-智能体（agent）" class="headerlink" title="1.1 智能体（agent）"></a>1.1 智能体（agent）</h3><blockquote>
+<p>对环境做的刺激做出响应的“装置”</p>
+</blockquote>
+<h3 id="智能体的学习形式"><a href="#智能体的学习形式" class="headerlink" title="智能体的学习形式"></a>智能体的学习形式</h3><h4 id="1-过程性知识（procedural-knowledge）"><a href="#1-过程性知识（procedural-knowledge）" class="headerlink" title="1. 过程性知识（procedural knowledge）"></a>1. 过程性知识（procedural knowledge）</h4><ul>
+<li>反复试验的过程，出错受罚、正确奖励的过程中学习适当的反应</li>
+</ul>
+<h4 id="2-陈述性知识（declarative-knowledge）"><a href="#2-陈述性知识（declarative-knowledge）" class="headerlink" title="2. 陈述性知识（declarative knowledge）"></a>2. 陈述性知识（declarative knowledge）</h4><ul>
+<li>扩充或者更新智能库里的知识</li>
+</ul>
+<h3 id="1-2-研究方法"><a href="#1-2-研究方法" class="headerlink" title="1.2 研究方法"></a>1.2 研究方法</h3><h4 id="1-工程路线"><a href="#1-工程路线" class="headerlink" title="1. 工程路线"></a>1. 工程路线</h4><ul>
+<li>侧重开发展示智能的系统</li>
+<li>目标是生产出符合某些性能目标的产品</li>
+</ul>
+<h4 id="2-理论路线"><a href="#2-理论路线" class="headerlink" title="2. 理论路线"></a>2. 理论路线</h4><ul>
+<li>尝试从计算机的角度来研究人类（动物）的智能</li>
+<li>关注重点在于增进人类对计算智能的理解</li>
+<li>产生了面向模拟的方法论</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><ul>
+<li>自然语言处理和语言学领域</li>
+</ul>
+<h3 id="1-3-图灵测试"><a href="#1-3-图灵测试" class="headerlink" title="1.3 图灵测试"></a>1.3 图灵测试</h3><blockquote>
+<p>图灵测试的重要性已不如从前，但它仍是人工智能领域重要的一部分</p>
+</blockquote>
+<ul>
+<li>一个原因在于，相对简单的手法会产生怪诞的智能显示</li>
+<li>如DOCTOR程序——一个心里治疗对话程序</li>
+</ul>
+<h2 id="2-感知"><a href="#2-感知" class="headerlink" title="2. 感知"></a>2. 感知</h2><blockquote>
+<p>理解图像、理解语言是感知研究领域中特别具有挑战性的</p>
+</blockquote>
+<h3 id="2-1-理解图像"><a href="#2-1-理解图像" class="headerlink" title="2.1 理解图像"></a>2.1 理解图像</h3><h4 id="1-图像处理（image-processing）"><a href="#1-图像处理（image-processing）" class="headerlink" title="1. 图像处理（image processing）"></a>1. 图像处理（image processing）</h4><ul>
+<li>标识图像的特征</li>
+</ul>
+<h4 id="2-图像分析（image-analysis）"><a href="#2-图像分析（image-analysis）" class="headerlink" title="2. 图像分析（image analysis）"></a>2. 图像分析（image analysis）</h4><ul>
+<li>理解特征代表什么意思的过程</li>
+<li>在这个过程中，用到了轮廓增强、平滑</li>
+</ul>
+<h3 id="2-2-语言处理"><a href="#2-2-语言处理" class="headerlink" title="2.2 语言处理"></a>2.2 语言处理</h3><h4 id="1-句法分析（syntactic-analysis）"><a href="#1-句法分析（syntactic-analysis）" class="headerlink" title="1. 句法分析（syntactic analysis）"></a>1. 句法分析（syntactic analysis）</h4><h4 id="2-语义分析（semantic-analysis）"><a href="#2-语义分析（semantic-analysis）" class="headerlink" title="2. 语义分析（semantic analysis）"></a>2. 语义分析（semantic analysis）</h4><h4 id="3-上下文分析（contextual-analysis）"><a href="#3-上下文分析（contextual-analysis）" class="headerlink" title="3. 上下文分析（contextual analysis）"></a>3. 上下文分析（contextual analysis）</h4><h4 id="信息检索"><a href="#信息检索" class="headerlink" title="信息检索"></a>信息检索</h4><ul>
+<li>标识与手头论题有关的文档</li>
+</ul>
+<h4 id="信息提取"><a href="#信息提取" class="headerlink" title="信息提取"></a>信息提取</h4><ul>
+<li>为一个特定的问题确定答案，或者将信息以某种格式记录，以备日后解答问题时使用</li>
+<li>语义网</li>
+</ul>
+<h2 id="3-推理"><a href="#3-推理" class="headerlink" title="3. 推理"></a>3. 推理</h2><h3 id="3-1-产生式系统"><a href="#3-1-产生式系统" class="headerlink" title="3.1 产生式系统"></a>3.1 产生式系统</h3><h4 id="1-状态集合"><a href="#1-状态集合" class="headerlink" title="1. 状态集合"></a>1. 状态集合</h4><ul>
+<li>标识初始状态、和目标状态</li>
+</ul>
+<h4 id="2-产生式集合"><a href="#2-产生式集合" class="headerlink" title="2. 产生式集合"></a>2. 产生式集合</h4><h4 id="3-控制系统"><a href="#3-控制系统" class="headerlink" title="3. 控制系统"></a>3. 控制系统</h4><ul>
+<li>开发的一个重要的概念是<strong>问题空间（problem space）</strong></li>
+<li><strong>问题空间</strong>通常会概念化成为<strong>状态图（state graph）</strong></li>
+<li><strong>推理法则</strong>：离散数学里的推论</li>
+</ul>
+<h3 id="3-2-搜索树"><a href="#3-2-搜索树" class="headerlink" title="3.2 搜索树"></a>3.2 搜索树</h3><ul>
+<li>alphgo，围棋，就是应用了搜索树</li>
+</ul>
+<h3 id="3-3-启发式法"><a href="#3-3-启发式法" class="headerlink" title="3.3 启发式法"></a>3.3 启发式法</h3><ul>
+<li>为了应对庞大的搜索树，重新设计搜索树的构建方法，从<strong>广度优先</strong>，到<strong>深度优先</strong>，使得路径向我们希望的方向发展，通常称为<strong>最佳优先（best-first）</strong></li>
+<li>对规划待机的一个衡量</li>
+</ul>
+<h4 id="两个特征"><a href="#两个特征" class="headerlink" title="两个特征"></a>两个特征</h4><ol>
+<li>对工作量具有一个合理的估计</li>
+<li>应该容易计算</li>
+</ol>
+<h3 id="基于行为的人工智能"><a href="#基于行为的人工智能" class="headerlink" title="基于行为的人工智能"></a>基于行为的人工智能</h3><ul>
+<li>为什么冯·诺依曼体系结构的机器在计算能力上轻易胜过人类，却难以展示常识性的判断</li>
+<li>基于行为的技术：人工神经网络领域、遗传算法领域、机器人领域</li>
+</ul>
+<h2 id="4-其他研究领域"><a href="#4-其他研究领域" class="headerlink" title="4. 其他研究领域"></a>4. 其他研究领域</h2><h3 id="4-1-知识的表达和处理"><a href="#4-1-知识的表达和处理" class="headerlink" title="4.1 知识的表达和处理"></a>4.1 知识的表达和处理</h3><blockquote>
+<p>知识仓库：真实世界的知识，由人脑维护</p>
+</blockquote>
+<ul>
+<li>人类一某种方式存储大量的信息并且一极高的效率从这些信息中汲取有用的信息——人工智能的一个重要挑战</li>
+<li>潜在的目标是找到表示和存储知识的途径，但是很复杂</li>
+<li>同时需要让知识容易理解，但是获取这种理解是一种挑战</li>
+<li>还有一个问题是，知识的确定不是明确的，而是含蓄的，是有手头任务相联系的</li>
+</ul>
+<h4 id="元推理（meta-reasoning）"><a href="#元推理（meta-reasoning）" class="headerlink" title="元推理（meta-reasoning）"></a>元推理（meta-reasoning）</h4><blockquote>
+<p>关于推理的推理</p>
+</blockquote>
+<ul>
+<li>数据库搜索最初使用的是<strong>封闭世界假设（closed-word assumption）</strong>,先假设一个语句为假，除非他能够从可用的信息明确得出</li>
+<li>但是存在一个矛盾，Mickey is a mouse or Donald is suck，但是他会推断出，两个都为假，虽然两个句子中至少可以有一个为真</li>
+<li>还有一个称为<strong>框架问题</strong>——用来在变化的环境中，使知识保持最新</li>
+</ul>
+<h3 id="4-2-学习"><a href="#4-2-学习" class="headerlink" title="4.2 学习"></a>4.2 学习</h3><h4 id="学习的层次"><a href="#学习的层次" class="headerlink" title="学习的层次"></a>学习的层次</h4><ol>
+<li>模仿</li>
+<li>监督训练</li>
+<li>强化——得到一个一般的规则，指导自己进行判断</li>
+</ol>
+<h4 id="逻辑程序设计知识"><a href="#逻辑程序设计知识" class="headerlink" title="逻辑程序设计知识"></a>逻辑程序设计知识</h4><blockquote>
+<p>知识的表达和存储与知识的提取和应用过程很好地整合在一起</p>
+</blockquote>
+<ul>
+<li>如：Dumbo is a elephant，和 X is a elephant implies X is a gray</li>
+</ul>
+<h4 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h4><blockquote>
+<p>一个与学习紧密相关的一个现象</p>
+</blockquote>
+<ul>
+<li>计算机发现系统中成功的例子包含哲学家弗朗西斯·培根爵士命名的Bacon，他已经能够发现电学上的欧姆定律、行星运动的开普勒第三定律、动量守恒</li>
+<li>系统AUTOCLASS，它采用红外光谱数据，发现了现在在天文学上未知的新型恒星，这是由计算机完成的一个真正的科学发现</li>
+</ul>
+<h3 id="4-3-遗传算法"><a href="#4-3-遗传算法" class="headerlink" title="4.3 遗传算法"></a>4.3 遗传算法</h3><ul>
+<li>A*算法壳寻找许多搜索问题的最优解，但是一些问题过于复杂，难以求解（超出内存、无法在合理的时间内完成）</li>
+<li>可以通过一个包含多级试探解的演进过程获得解——遗传算法（genetic algorithm）</li>
+<li>遗传算法，通过猜测，随机给出一些解，通过从上一代的染色体中选择最有可能的染色体跳出两个作为父辈（最难的部分），不断进化</li>
+</ul>
+<h2 id="5-人工神经网络"><a href="#5-人工神经网络" class="headerlink" title="5. 人工神经网络"></a>5. 人工神经网络</h2><blockquote>
+<p>提供了模仿活体生物系统中神经网络的模型</p>
+</blockquote>
+<ul>
+<li>一个人脑大约有 $$ 10^{11} $$个神经元，每个神经元有$$10^4$$个突触</li>
+</ul>
+<p><img src="/2018/06/18/计算机科学概论/第十一章、人工智能/神经元.png" alt=""></p>
+<ul>
+<li>v1、v2、v3表示其他神经元的输出</li>
+<li>w1、w2、w3表示权重（可正可负）</li>
+</ul>
+<h3 id="5-2-训练神经网络"><a href="#5-2-训练神经网络" class="headerlink" title="5.2 训练神经网络"></a>5.2 训练神经网络</h3><blockquote>
+<p>不在通过传统意义上的编程来实现，而是通过训练来实现</p>
+</blockquote>
+<h3 id="5-3-联想记忆"><a href="#5-3-联想记忆" class="headerlink" title="5.3 联想记忆"></a>5.3 联想记忆</h3><p><img src="/2018/06/18/计算机科学概论/第十一章、人工智能/联想记忆的神经网络.png" alt=""></p>
+<ul>
+<li>神经元相互连接没有输入和输出的网</li>
+</ul>
+<h2 id="6-机器人学"><a href="#6-机器人学" class="headerlink" title="6. 机器人学"></a>6. 机器人学</h2><blockquote>
+<p>研究具有智能行为的物理上的自主智能题的一门学科</p>
+</blockquote>
+<ul>
+<li>对于所有智能体，机器人在所处的环境中必须能够感知，推理和发生作用</li>
+<li>涵盖了人工智能的所有研究范围，并借鉴了很多机械和电子工程方面的知识</li>
+</ul>
+<h4 id="自主机器人"><a href="#自主机器人" class="headerlink" title="自主机器人"></a>自主机器人</h4><ul>
+<li>计划周密的</li>
+<li><strong>反应型机器人</strong>，这个比较像人类</li>
+</ul>
+<h4 id="进化型机器人"><a href="#进化型机器人" class="headerlink" title="进化型机器人"></a>进化型机器人</h4><h2 id="7-后果的思考"><a href="#7-后果的思考" class="headerlink" title="7. 后果的思考"></a>7. 后果的思考</h2><ul>
+<li><p>人类的价值观和人工智能的价值观</p>
+</li>
+<li><p>是否符合社会道德</p>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月11日 14:09</p>
+        <p>原始链接： <a class="post-url" href="/2018/06/18/计算机科学概论/第十一章、人工智能/" title="人工智能">https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/&title=《人工智能》 — iLife's Blog&pic=https://picsum.photos/375/200/?random" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/&title=《人工智能》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《人工智能》 — iLife's Blog&url=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/06/18/计算机科学概论/第十一章、人工智能/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机科学概论/" class="color3">计算机科学概论</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第十一章、人工智能"><span class="post-toc-text">第十一章、人工智能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-智能与机器"><span class="post-toc-text">1. 智能与机器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-智能体（agent）"><span class="post-toc-text">1.1 智能体（agent）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#智能体的学习形式"><span class="post-toc-text">智能体的学习形式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-过程性知识（procedural-knowledge）"><span class="post-toc-text">1. 过程性知识（procedural knowledge）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-陈述性知识（declarative-knowledge）"><span class="post-toc-text">2. 陈述性知识（declarative knowledge）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-研究方法"><span class="post-toc-text">1.2 研究方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-工程路线"><span class="post-toc-text">1. 工程路线</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-理论路线"><span class="post-toc-text">2. 理论路线</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例子"><span class="post-toc-text">例子</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-图灵测试"><span class="post-toc-text">1.3 图灵测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-感知"><span class="post-toc-text">2. 感知</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-理解图像"><span class="post-toc-text">2.1 理解图像</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-图像处理（image-processing）"><span class="post-toc-text">1. 图像处理（image processing）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-图像分析（image-analysis）"><span class="post-toc-text">2. 图像分析（image analysis）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-语言处理"><span class="post-toc-text">2.2 语言处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-句法分析（syntactic-analysis）"><span class="post-toc-text">1. 句法分析（syntactic analysis）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-语义分析（semantic-analysis）"><span class="post-toc-text">2. 语义分析（semantic analysis）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-上下文分析（contextual-analysis）"><span class="post-toc-text">3. 上下文分析（contextual analysis）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信息检索"><span class="post-toc-text">信息检索</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信息提取"><span class="post-toc-text">信息提取</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-推理"><span class="post-toc-text">3. 推理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-产生式系统"><span class="post-toc-text">3.1 产生式系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-状态集合"><span class="post-toc-text">1. 状态集合</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-产生式集合"><span class="post-toc-text">2. 产生式集合</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-控制系统"><span class="post-toc-text">3. 控制系统</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-搜索树"><span class="post-toc-text">3.2 搜索树</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-启发式法"><span class="post-toc-text">3.3 启发式法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#两个特征"><span class="post-toc-text">两个特征</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于行为的人工智能"><span class="post-toc-text">基于行为的人工智能</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-其他研究领域"><span class="post-toc-text">4. 其他研究领域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-知识的表达和处理"><span class="post-toc-text">4.1 知识的表达和处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#元推理（meta-reasoning）"><span class="post-toc-text">元推理（meta-reasoning）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-学习"><span class="post-toc-text">4.2 学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#学习的层次"><span class="post-toc-text">学习的层次</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逻辑程序设计知识"><span class="post-toc-text">逻辑程序设计知识</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#发现"><span class="post-toc-text">发现</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-遗传算法"><span class="post-toc-text">4.3 遗传算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-人工神经网络"><span class="post-toc-text">5. 人工神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-训练神经网络"><span class="post-toc-text">5.2 训练神经网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-联想记忆"><span class="post-toc-text">5.3 联想记忆</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-机器人学"><span class="post-toc-text">6. 机器人学</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自主机器人"><span class="post-toc-text">自主机器人</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#进化型机器人"><span class="post-toc-text">进化型机器人</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-后果的思考"><span class="post-toc-text">7. 后果的思考</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/20/计算机科学概论/第十二章、计算理论/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计算理论
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/06/17/计算机科学概论/第十章、计算机图形学/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算机图形学</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
