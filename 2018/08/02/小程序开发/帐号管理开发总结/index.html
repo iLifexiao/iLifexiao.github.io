@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>微信小程序开发总结 | iLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="iLife,iLife's Blog" />
+  
+  <meta name="description" content="帐号管理小程序——开发总结 从零开始写小程序，项目地址：GItHub，博客地址  1. 开发前期想法：最初的想法是想做一个管理手机号码所绑定的APP，通过自动更换手机绑定的过程，减少换手机号码锁带来的迁移成本。打算通过爬虫区自动去尝试常用应用的帐号是否绑定该手机号码，但是这样的效率太差了，并且那些网站都有做相应的保护，难以完成。 后面了解到了中国移动，开发了一个名为移动认证的应用，正在减弱密码的使">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发总结">
+<meta property="og:url" content="https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/index.html">
+<meta property="og:site_name" content="iLife&#39;s Blog">
+<meta property="og:description" content="帐号管理小程序——开发总结 从零开始写小程序，项目地址：GItHub，博客地址  1. 开发前期想法：最初的想法是想做一个管理手机号码所绑定的APP，通过自动更换手机绑定的过程，减少换手机号码锁带来的迁移成本。打算通过爬虫区自动去尝试常用应用的帐号是否绑定该手机号码，但是这样的效率太差了，并且那些网站都有做相应的保护，难以完成。 后面了解到了中国移动，开发了一个名为移动认证的应用，正在减弱密码的使">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-04T11:49:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序开发总结">
+<meta name="twitter:description" content="帐号管理小程序——开发总结 从零开始写小程序，项目地址：GItHub，博客地址  1. 开发前期想法：最初的想法是想做一个管理手机号码所绑定的APP，通过自动更换手机绑定的过程，减少换手机号码锁带来的迁移成本。打算通过爬虫区自动去尝试常用应用的帐号是否绑定该手机号码，但是这样的效率太差了，并且那些网站都有做相应的保护，难以完成。 后面了解到了中国移动，开发了一个名为移动认证的应用，正在减弱密码的使">
+  
+  
+    <link rel="icon" href="images/favicon.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">iLife&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        iLife&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Free Your mind
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Blog" target="_blank" href="https://ilifexiao.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/iLifexiao">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-小程序开发/帐号管理开发总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      微信小程序开发总结
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/开发总结/">开发总结</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-08-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="帐号管理小程序——开发总结"><a href="#帐号管理小程序——开发总结" class="headerlink" title="帐号管理小程序——开发总结"></a>帐号管理小程序——开发总结</h1><blockquote>
+<p>从零开始写小程序，项目地址：<a href="https://github.com/iLifexiao/keyManager" target="_blank" rel="noopener">GItHub</a>，<a href="https://ilifexiao.github.io/">博客地址</a></p>
+</blockquote>
+<h1 id="1-开发前期"><a href="#1-开发前期" class="headerlink" title="1. 开发前期"></a>1. 开发前期</h1><h4 id="想法："><a href="#想法：" class="headerlink" title="想法："></a>想法：</h4><p>最初的想法是想做一个管理手机号码所绑定的APP，通过自动更换手机绑定的过程，减少换手机号码锁带来的迁移成本。打算通过爬虫区自动去尝试常用应用的帐号是否绑定该手机号码，但是这样的效率太差了，并且那些网站都有做相应的保护，难以完成。</p>
+<p>后面了解到了中国移动，开发了一个名为<a href="http://dev.10086.cn/cmpassport/" target="_blank" rel="noopener">移动认证</a>的应用，正在减弱密码的使用，使用一个帐号九可以登录所有的应用，同样增加了用户的迁移成本。</p>
+<p>后面呢，随着前端开发的火热，以及微信应用的爆发。了解和接触前端开发似乎成为一个开发者必不可少的能力，抱着多多接触新技术和增长能力的想法，打算开发一个微信小程序作为前端的入门。</p>
+<p>互联网的发展，使我们增添了许多获取信息的渠道，同样使得网络安全以及帐号安全成为一个主要问题。纷繁复杂的应用，和许多密码，通过人工记忆许多无规则的密码显然是不够合理的。使用同一个密码容易使得帐号盗号撞库发生。</p>
+<p>综上所述，开发一个以可以记录，保存，备份，加密的帐号管理软件成为了一个较好的方式。</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p>在得到想法以后，参考了几个同样具有帐号管理的微信小程序，作为出发点。</p>
+<ul>
+<li><a href="https://1password.com/" target="_blank" rel="noopener">onepassword</a></li>
+<li>密码箱</li>
+</ul>
+<h4 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h4><ul>
+<li>UI设计，<a href="https://modao.cc/" target="_blank" rel="noopener">墨刀</a>，软件使用流程设计</li>
+<li>icon资源来自<a href="http://www.iconfont.cn/" target="_blank" rel="noopener">IconFont</a>、<a href="https://unsplash.it/" target="_blank" rel="noopener">壁纸</a>资源</li>
+<li>加密算法来自<a href="https://github.com/iLifexiao/keyManager/blob/master/code.google.com/p/crypto-js" target="_blank" rel="noopener">开源分享1</a>、<a href="https://github.com/iLifexiao/keyManager/blob/master/haitao.tu" target="_blank" rel="noopener">开源分享2</a>、<a href="http://pajhome.org.uk/crypt/" target="_blank" rel="noopener">开源分享3</a></li>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html" target="_blank" rel="noopener">微信开发者工具</a></li>
+<li><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/quickstart/basic/getting-started.html" target="_blank" rel="noopener">开发文档</a></li>
+<li><a href="https://github.com/iLifexiao/keyManager/blob/master/www.w3school.com.cn" target="_blank" rel="noopener">前端知识</a></li>
+</ul>
+<h1 id="2-开发过程"><a href="#2-开发过程" class="headerlink" title="2. 开发过程"></a>2. 开发过程</h1><h2 id="2-1-框架"><a href="#2-1-框架" class="headerlink" title="2.1 框架"></a>2.1 框架</h2><h4 id="使用的开发框架："><a href="#使用的开发框架：" class="headerlink" title="使用的开发框架："></a>使用的开发框架：</h4><ul>
+<li>使用<a href="https://github.com/weui/weui" target="_blank" rel="noopener">WEUI</a>来制作UI界面</li>
+<li>微信的Markdown解析<a href="https://github.com/icindy/wxParse" target="_blank" rel="noopener">wxParse</a></li>
+</ul>
+<ol>
+<li>该程序是使用<a href="https://github.com/weui/weui" target="_blank" rel="noopener">WEUI</a>来制作，大大降低了UI开发的难度，通过参考WEUI的代码，搭建出小程序的基本界面</li>
+<li>实现每一项功能，实现数据存储</li>
+<li>挖掘小程序的API，实现更多的功能，同时不断提高用户的体验</li>
+<li>重构应用</li>
+</ol>
+<h4 id="其他开发框架："><a href="#其他开发框架：" class="headerlink" title="其他开发框架："></a>其他开发框架：</h4><ul>
+<li><a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="noopener">zanui-weapp</a></li>
+<li><a href="https://github.com/uileader/touchui" target="_blank" rel="noopener">TouchUI</a>，能实现一套代码开发微信小程序和HTML页面</li>
+<li><a href="https://github.com/tencentyun/wafer2-startup" target="_blank" rel="noopener">微信小程序-腾讯云解决方案</a>，简化了小程序后端开发的难度</li>
+<li><a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">MpVue</a>，一款让小程序支持组件化开发的框架，通过预编译的手段让开发者可以选择自己喜欢的开发风格去开发小程序。框架的细节优化，Promise，Async Functions的引入都是为了能让开发小程序项目变得更加简单，高效。</li>
+<li><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">Wepy</a>，是一个使用 <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js</a> 开发小程序的前端框架。框架基于 <code>Vue.js</code> 核心，<code>mpvue</code> 修改了 <code>Vue.js</code> 的 runtime 和 compiler 实现，使其可以运行在小程序环境中，从而为小程序开发引入了整套 <code>Vue.js</code> 开发体验。</li>
+</ul>
+<h3 id="开发框架总结："><a href="#开发框架总结：" class="headerlink" title="开发框架总结："></a>开发框架总结：</h3><p>从前端发展出来的微信小程序框架，可以看出，构建一个程序的方法有很多，重要的你的想法和逻辑，一个好的框架和完善的文档，能够让你快速的完成开发过程。</p>
+<p>到目前的移动端（iOS，Android）同样可以通过前端来构建，比如目前火热的<a href="https://github.com/flutter/flutter" target="_blank" rel="noopener">Flutter</a>，可以使用一套代码构建出安卓和iOS端的APP，大大地减少了开发的难度和成本。缺点在于无法做到原生端那么的流畅和精美。但对于简单的开发需求完全可以胜任。</p>
+<p>比如Alibaba的<a href="https://github.com/alibaba/weex" target="_blank" rel="noopener">Wexx</a>，框架可以构建三端的应用（iOS，Android，WEB）</p>
+<p>从前端、移动端、WEB端的各种生态系统里，相同的是业务逻辑和想法，不同的只是标准。正所谓天下合久必分，分久必合。一个良好的生态环境和强大的技术能够实现一统三端，为相同的目标实现三套不同的标准可谓是形态所迫，希望未来简单的编码过程交付于<strong>AI</strong>完全可以。你只要专注与<strong>业务设计和想法逻辑</strong>即可。</p>
+<p>所以<strong>务实基础</strong>，才是构建大厦的<strong>根本</strong>，才能让你在不断变化的世界里游刃有余。</p>
+<p>未来存在你与机器的区分之处，就是你的<strong>创造力和想象力</strong>。</p>
+<h2 id="2-2-逻辑-amp-问题"><a href="#2-2-逻辑-amp-问题" class="headerlink" title="2.2 逻辑&amp;问题"></a>2.2 逻辑&amp;问题</h2><h3 id="使用流程："><a href="#使用流程：" class="headerlink" title="使用流程："></a>使用流程：</h3><ol>
+<li>通过唯一的密码 或者 指纹登录验证后进入软件的主页面（数据存储、页面跳转、验证逻辑、页面布局）</li>
+<li>主页显示基础的帐号分类，提供全局搜索的功能（数据预先加载&amp;分类、控件重叠居中等）</li>
+<li>点击分类显示帐号（同时在标题栏显示帐号的数量、右下角可以方便地添加帐号）</li>
+<li>点击帐号（显示帐号的具体信息、页面的复用&amp;传值、分享帐号）</li>
+<li>点击设置（帐号导出&amp;导入，导出的信息通过AES加密、修改密码&amp;密钥、常见问题解答、用户帮助等）</li>
+</ol>
+<h3 id="开发逻辑："><a href="#开发逻辑：" class="headerlink" title="开发逻辑："></a>开发逻辑：</h3><h2 id="1-验证页面"><a href="#1-验证页面" class="headerlink" title="1. 验证页面"></a>1. 验证页面</h2><p>用户打开程序，首先加载的是名为<code>index</code>的页面，所以需要设计验证页面为<code>index</code>，验证通过才能跳转到主页面。</p>
+<p>在此之前需要判断用户是否第一次使用该软件（通过是否获取到登录密码为准，因为程序必要要用登录密码才能使用），第一次使用则需要设置密码。</p>
+<p>获取密码通过程序的入口<code>app.js</code>来设置，并保存到全局变量<strong>APP</strong>中的<code>globalData</code>，通过<code>getApp()</code>来获取<strong>APP</strong>全局变量，这个同时也是页面传值的通道。</p>
+<p>用到了<code>wx.getStorageSync(key) || wx.getStorageAsync(key)</code>，需要注意避免获取为空的异常。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取加密信息, 虽然是一个字典，但是数据是空的，自然旧获取不到key</span></span><br><span class="line"><span class="keyword">var</span> secret = wx.getStorageSync(<span class="string">'secret'</span>) || &#123;</span><br><span class="line">  <span class="string">"key"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"iv"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>优化点1：</strong>这里使用了大量的同步API来获取缓存中的数据（主要是帐号），是导致程序启动缓慢的主要原因，可以考虑懒加载来提高程序的运行速度，或者将帐号数据保存到<strong>服务器中</strong>，这就要考虑到服务器安全和用户信任的问题了。</p>
+<p>对于全局变量用于保存<strong>用户的默认设置</strong>，同样需要从缓存中读取到内存中。</p>
+<h4 id="验证页面布局："><a href="#验证页面布局：" class="headerlink" title="验证页面布局："></a>验证页面布局：</h4><blockquote>
+<p>采用居中和流式布局(flex)</p>
+</blockquote>
+<p><strong>顶部：</strong></p>
+<ol>
+<li>使用一个标签来标识用户的状态（输入密码、设置密码、再输一次、密码错误）</li>
+<li>6个圆点表示用户输入的密码个数（填充、未填充），根据密码的长度来做相应的显示</li>
+</ol>
+<p><strong>优点1：</strong>微信小程序的数据和视图是绑定在一起的，数据的变化会自动更新视图。类似iOS里面的viewModel，通过数据来布局</p>
+<p><strong>中部</strong>：</p>
+<ol>
+<li>使用<code>1~9</code>的按钮作为密码输入控件，采用流式布局</li>
+<li>因为使用<code>wx:for</code>来创建的数字输入控件，数据绑定的点击事件为<code>numTap:</code>，对于特殊的符号<code>C</code>,<code>X</code>,<code>0</code>区别对待`，设置不同的颜色和功能</li>
+</ol>
+<p><strong>底部：</strong></p>
+<ol>
+<li>功能按钮设置（重新输入、指纹识别等），为了避免用户忘记上一次的输入</li>
+<li>采用<code>flex</code>布局，后期可以添加新的功能上去，而不用考虑布局</li>
+</ol>
+<p><strong>优点2：</strong>拥有自动约束的功能，能够为后面的布局自动适配。类似iOS中的<code>storyboard</code></p>
+<h4 id="验证页面逻辑："><a href="#验证页面逻辑：" class="headerlink" title="验证页面逻辑："></a>验证页面逻辑：</h4><blockquote>
+<p> 使用顶部标签来标记用户的状态，进而进行操作</p>
+</blockquote>
+<p><strong>流程：</strong></p>
+<ol>
+<li>页面加载，获取全局变量<code>app.globalData</code>中的<code>userKey</code>，判断用户是否为第一次使用程序（密码为空表示第一次使用程序），设置标签的状态为<strong>请设置密码</strong>，否则加载<code>userKey,openFingerPrint</code>状态到当前页面。同时如果用户设置了指纹识别，则自动弹出。</li>
+<li>输入密码时，根据标签执行不同的方法。</li>
+<li><strong>请设置密码：</strong>将输入的密码<code>push</code>到<code>pwd</code> ,然后由<code>settingPwd</code>保存到<code>userKey</code>里，这里的<code>pwd</code>作为密码的输入容器，当<code>pwd</code>的长度为6时，切换到<strong>再输入一次</strong>状态下，执行<code>confirmPwd</code>，当<code>pwd</code>的长度为6时，验证两次输入的密码是否正确，<strong>正确：</strong>执行<code>setStorageAndLogin</code>保存用户的密码，并跳转到主页面<code>wx.switchTab</code>，关于跳转页面参考<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/quickstart/basic/getting-started.html" target="_blank" rel="noopener">开发文档</a>（有几种不同的跳转方式）。这里使用的是关闭当前页面，并跳转到<code>tabbar</code>。<strong>错误：</strong>清空用户的输入，并振动<code>confirmError</code>。此时用户可以选择<strong>返回到上一次的状态</strong>，底部的工具按钮会显示<code>clearStoreKey</code>。</li>
+<li>用户不是第一次登录时，<strong>请输入密码：</strong>执行<code>loginPwd</code>，将<code>pwd</code>和<code>userKey</code>比较叫醒相应的操作</li>
+<li><strong>清除按钮：</strong>在<strong>请设置密码</strong>的状态下，需要清除<code>userKey</code>，其余状态只需清除<code>pwd</code>即可</li>
+<li><strong>删除按钮：</strong>在<strong>请设置密码</strong>的状态下，需要<code>pop</code> <code>userKey</code>，其余状态只需<code>pop</code> <code>pwd</code>即可</li>
+</ol>
+<p><strong>重构：</strong></p>
+<p>这里用到了一些重构的方法：<strong>提炼函数（Extract Method）</strong>、<strong>塑造模板函数（From Template Method）</strong>、过多的注释（Comments）</p>
+<p>来自阅读笔记：<a href="https://ilifexiao.github.io/2018/05/02/%E9%87%8D%E6%9E%84%E6%94%B9%E5%96%84%E6%97%A2%E6%9C%89%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%8F%E5%91%B3%E9%81%93/">重构改善既有代码的设计</a></p>
+<h2 id="2-主页"><a href="#2-主页" class="headerlink" title="2. 主页"></a>2. 主页</h2><h3 id="主页布局"><a href="#主页布局" class="headerlink" title="主页布局:"></a>主页布局:</h3><blockquote>
+<p>分为一个主页背景&amp;搜索框，帐号分类的九宫格</p>
+</blockquote>
+<p><strong>上部：</strong></p>
+<ol>
+<li>采用一个375rpx*200rpx相对像素的图片作为背景，背景上重叠一个半透明的搜索框</li>
+</ol>
+<p><strong>解释：</strong></p>
+<ol>
+<li>rpx表示根据屏幕进行自动适配的像素点，因为点和像素是存在一个比例的。类似iOS里面的屏幕适配，采用的点和像素点之间的转换</li>
+<li>微信小程序里面的布局是自动分布下来的，并不会发生重叠。所以需要设置<code>z-index: -1;</code>来调节显示的优先</li>
+</ol>
+<p><strong>下部：</strong></p>
+<ol>
+<li>一个分割栏，表示分类信息&amp;一个开启随机壁纸的按钮</li>
+<li>采用<a href="https://github.com/weui/weui" target="_blank" rel="noopener">WEUI</a>的九宫格控件来完成，自带<code>navigator</code>，只要放置好<code>URL</code>即可</li>
+</ol>
+<h3 id="主页逻辑："><a href="#主页逻辑：" class="headerlink" title="主页逻辑："></a>主页逻辑：</h3><blockquote>
+<p>从全局变量加载分类信息&amp;用户设置</p>
+</blockquote>
+<p><strong>流程：</strong></p>
+<ol>
+<li>点击搜索框，输入帐号的（名称、帐号、备注）在所有帐号里面返回对应的集合。这里采用了<code>util</code>工具类，对于全局一些常用的功能和方法提取。搜索成功则跳转到对应的页面<code>showAccount</code>，否则弹出相应的提示。</li>
+<li>点击九宫格中的分类，跳转到<code>navigator</code>，设置好的<code>URL</code>，然后将分类信息传递到页面<code>showAccount</code></li>
+</ol>
+<h2 id="3-showAccount页面"><a href="#3-showAccount页面" class="headerlink" title="3.showAccount页面"></a>3.showAccount页面</h2><blockquote>
+<p>一个简单的tableList，显示帐号的基本信息（图标、名称、帐号）。右下角提供一个添加帐号的按钮，长按可以删除帐号</p>
+</blockquote>
+<h3 id="showAccount逻辑："><a href="#showAccount逻辑：" class="headerlink" title="showAccount逻辑："></a>showAccount逻辑：</h3><p><strong>流程：</strong></p>
+<ol>
+<li>因为该页面包含了从九宫格和搜索框过来的两种情况，需要根据页面传递过来参数来判断。搜索的跳转是不带参数的</li>
+<li>每次页面显示都会更新导航栏标题上面，当前分类的帐号数量。是为了当用户移动了帐号的类别，就需要做出相应的改变，这里用到了页面反向传参</li>
+<li><strong>九宫格跳转：</strong>根据传递帐号的类型<code>accType</code>，通过<code>util</code>工具类，在所有帐号中返回该类型的帐号集合。为空就显示出empty的页面，并提示用户添加帐号。</li>
+<li><strong>搜索跳转：</strong>通过<code>util</code>工具类，返回包含关键词的帐号，使用到了<code>search(key)</code>来判断一个字符串中是否存在某个字符。因为这里是通过URL跳转的，URL只能是字符串。所以需要将返回的集合进行<code>json</code>化，才能传递。并没有像HTPP那样，可以通过<code>response</code>来传递数据。</li>
+<li><p><strong>长按删除：</strong>选择一个帐号长按，会触发<code>showOperation</code>，可以用来删除帐号。删除帐号要注意的是，需要记录帐号在当前集合中的行数，因为所有的帐号的缓存中并没有按照分类来保存，所有的帐号都是保存在一起的。所以显示的顺序和<strong>存储顺序并不一致</strong>，所以同样通过<code>util</code>工具类，返回对象的位置，并记录。接下来需要做的是：</p>
+<ol>
+<li>删除页面例的帐号信息</li>
+<li>删除缓存中的帐号信息，这里同样需要找到缓存中当前帐号的位置</li>
+<li>更新页面信息（全局变量、帐号数量）</li>
+</ol>
+</li>
+<li><strong>点击显示帐号：</strong>记录帐号在缓存中的位置，和当前页面的位置。因为用户可能修改帐号的信息，你需要同步更新（这里用到了逆向传值）。还有就是所有数据都是根据全局变量来做出改变的，并不会继续读取缓存中的数据，为了加快程序运行速度，所以需要<strong>同步更新缓存和全局变量</strong>。传递到新页面<code>adding_account</code>的参数有帐号的json信息<code>accountJSON</code>、帐号在缓存中的位置<code>accountIndex</code>、帐号的类型<code>accType</code>、帐号在原页面的位置<code>tapIndex</code>、页面类型<code>pageType</code>，因为该新页面提供了两种功能。</li>
+<li></li>
+</ol>
+<p><strong>解释：</strong></p>
+<ol>
+<li><p>页面正向跳转传参，用到的是基本的URL，通过字符串来传递参数，和HTTP中的TCP类似</p>
+</li>
+<li><p>反向传参，通过获取页面栈</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pages = getCurrentPages()</span><br><span class="line"><span class="keyword">var</span> that = pages[pages.length - <span class="number">2</span>]</span><br><span class="line"><span class="comment">// 然后就可一像操作上一页面的数据一样即可</span></span><br><span class="line"><span class="keyword">if</span> (that.__route__ == <span class="string">"pages/showAccount/showaccount"</span>) &#123;</span><br><span class="line">  that.setData(&#123;</span><br><span class="line">    accountList: beforeAccountList,</span><br><span class="line">    <span class="comment">// 这一句代码用于临界情况，该分类下只有一个帐号，将所有情况普通化</span></span><br><span class="line">    emptyInfo: <span class="string">"暂无 "</span> + <span class="keyword">this</span>.data.accType + <span class="string">" 的帐号"</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何在对象数组中查找对象，数组对象的比较还包括了指针, 所以即使内容完全一样，也无法查找到，原因是因为对象数组中判断两个对象是否相同，这两个数据都必须是该对象数组中的。该对象的数据来源并不一致（即不是同一个数组），所以采用将<strong>对象json化</strong>，然后进行比较即可。需要<strong>注意</strong>：json转码中 &amp; ? 等符号不能使用。</p>
+</li>
+</ol>
+<h4 id="that-amp-this-在回调方法中的问题"><a href="#that-amp-this-在回调方法中的问题" class="headerlink" title="that &amp; this 在回调方法中的问题"></a>that &amp; this 在回调方法中的问题</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 解决方法一</span></span><br><span class="line"><span class="comment">* 复制一份当前的对象，如下：</span></span><br><span class="line"><span class="comment">* var that=this;//把this对象复制到临时变量that</span></span><br><span class="line"><span class="comment">* </span></span><br><span class="line"><span class="comment">* 在wx.request(&#123;&#125;)，有时候会需要获取页面初始化数据data的情况，</span></span><br><span class="line"><span class="comment">* 如果使用，this.data来获取，调试页面会报undefiend。</span></span><br><span class="line"><span class="comment">* 原因是，在javascript中，this代表着当前对象，会随着程序的执行过程中的上下文改变</span></span><br><span class="line"><span class="comment">* 在wx.request(&#123;&#125;); 方法的回调函数中，对象已经发生改变，所以已经不是wx.request(&#123;&#125;);方法对象了，data属性也不存在了。 </span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*  解决方法二</span></span><br><span class="line"><span class="comment">* 将回调函数换一种声明方式</span></span><br><span class="line"><span class="comment">* success: res=&gt; &#123;</span></span><br><span class="line"><span class="comment">*   this.</span></span><br><span class="line"><span class="comment">* &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-adding-account页面"><a href="#4-adding-account页面" class="headerlink" title="4.adding_account页面"></a>4.adding_account页面</h2><blockquote>
+<p>用于显示帐号的详细信息、修改帐号、添加帐号、分享帐号</p>
+</blockquote>
+<h3 id="页面布局："><a href="#页面布局：" class="headerlink" title="页面布局："></a>页面布局：</h3><ol>
+<li><p>帐号图标，可以通过右侧的选择图标，从自带的图标或者相册里面获取</p>
+</li>
+<li><p>分类选择器</p>
+</li>
+<li><p>帐号名称</p>
+</li>
+<li><p>帐号</p>
+</li>
+<li><p>密码位数，滑杆（0~16）</p>
+</li>
+<li><p>密码规则，用于自动生成密码</p>
+</li>
+<li><p>密码，通过右侧的生成密码按钮生成密码</p>
+</li>
+<li><p>备注</p>
+</li>
+<li><p>操作按钮区域（保存帐号、更新帐号、复制密码）</p>
+</li>
+</ol>
+<h3 id="页面逻辑："><a href="#页面逻辑：" class="headerlink" title="页面逻辑："></a>页面逻辑：</h3><ol>
+<li><p>通过<code>util</code>类获取已存在的帐号分类，包括用户自定义添加的类</p>
+</li>
+<li><p>根据页面的类型<code>pageType</code>，显示不同的信息</p>
+</li>
+<li><p><strong>显示帐号：</strong>将页面传递过来的帐号数据，保存到当前页面，通过控件显示<code>value=&#39;&#39;</code></p>
+</li>
+<li><p><strong>更新帐号：</strong>当用户修改了帐号的信息，通过输入框失去焦点来获取实时的更新内容，保存在<code>account</code>里。然后用户点击<strong>更新帐号</strong>按钮即可更新完毕。<code>saveAccount</code>这里面处理的有：</p>
+<ol>
+<li>判断信息是否为空</li>
+<li>特殊符检查，避免json数据传递失败</li>
+<li>判断页面状态，是更新帐号 or 添加帐号，进而进行不同的操作</li>
+<li>同时为了减少图片的缓存问题，将帐号的icon进行判断（图片 || 已有类型）</li>
+<li>根据按钮的类型，进行不同的操作<code>modifyAccount</code>。更新全局信息，上一页面的信息，缓存信息。</li>
+</ol>
+</li>
+<li><p><strong>保存帐号：</strong>和更新帐号采用的是同一个方法，仅仅第五步不同，通过<code>util</code>工具，来添加对象，需要保证不能添加相同的帐号。所以同样需要对象json化，来保证。</p>
+</li>
+</ol>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>随着开发的难度不断减小，得益于开发工具和完善的开发资料。人们对于应用的接入并不在乎是通过小程序，还是原生应用。对于那些使用频率小的应用，更是如此。</p>
+<p>未来的开发方向不在由几大平台割裂，我们需要的不是同一个解决方案下的多套代码，我们需要的是开发过程中，通过开发人员不断完善和统一的开发平台。</p>
+<p>或许我们可以通过<strong>AI</strong>和开发各个领域的高级开发工程师，来不断向这个目标靠近，开发出一个强大的AI开发平台，区分的仅仅是逻辑而不是标准。</p>
+<h3 id="核心问题："><a href="#核心问题：" class="headerlink" title="核心问题："></a>核心问题：</h3><ol>
+<li>处理边界情况</li>
+<li>数据更新，页面传值、工具类封装</li>
+<li>页面布局</li>
+<li>压缩工程体积，用户体验，UI界面</li>
+</ol>
+<h3 id="开发问题："><a href="#开发问题：" class="headerlink" title="开发问题："></a>开发问题：</h3><ol>
+<li>控件布局</li>
+<li>应用处理逻辑</li>
+<li>开发工具的利用（主要是调试）</li>
+</ol>
+<h3 id="扩展和深入："><a href="#扩展和深入：" class="headerlink" title="扩展和深入："></a>扩展和深入：</h3><ol>
+<li><p>对于项目里面提供的<strong>常用帐号图标</strong>，来自与网页应用市场，然后通过编写python脚本来进行一键处理（背景透明化、大小设置）</p>
+</li>
+<li><p>使用工具将图片进行压缩，降低工程的体积</p>
+</li>
+<li><p>下一步，考虑使用服务器（腾讯云或者阿里云）</p>
+</li>
+</ol>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><ul>
+<li><a href="https://www.cnblogs.com/sun8134/p/6395947.html" target="_blank" rel="noopener">微信小程序 View：flex 布局</a></li>
+<li><a href="https://blog.csdn.net/qq_32117641/article/details/80552084" target="_blank" rel="noopener">关于微信小程序文字水平垂直居中</a></li>
+<li><a href="https://www.jianshu.com/p/869425b79546" target="_blank" rel="noopener">微信小程序之让view水平垂直居中</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年08月04日 19:49</p>
+        <p>原始链接： <a class="post-url" href="/2018/08/02/小程序开发/帐号管理开发总结/" title="微信小程序开发总结">https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/</a></p>
+        <footer>
+            <a href="https://ilifexiao.github.io">
+                <img src="/images/logo.png" alt="xiao">
+                xiao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/&title=《微信小程序开发总结》 — iLife's Blog&pic=https://picsum.photos/375/200/?image=382" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/&title=《微信小程序开发总结》 — iLife's Blog&source=Think Difference" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微信小程序开发总结》 — iLife's Blog&url=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/&via=https://ilifexiao.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://ilifexiao.github.io/2018/08/02/小程序开发/帐号管理开发总结/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/微信小程序/" class="color1">微信小程序</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#帐号管理小程序——开发总结"><span class="post-toc-text">帐号管理小程序——开发总结</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-开发前期"><span class="post-toc-text">1. 开发前期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#想法："><span class="post-toc-text">想法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考："><span class="post-toc-text">参考：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#准备："><span class="post-toc-text">准备：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-开发过程"><span class="post-toc-text">2. 开发过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-框架"><span class="post-toc-text">2.1 框架</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用的开发框架："><span class="post-toc-text">使用的开发框架：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他开发框架："><span class="post-toc-text">其他开发框架：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发框架总结："><span class="post-toc-text">开发框架总结：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-逻辑-amp-问题"><span class="post-toc-text">2.2 逻辑&amp;问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用流程："><span class="post-toc-text">使用流程：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发逻辑："><span class="post-toc-text">开发逻辑：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-验证页面"><span class="post-toc-text">1. 验证页面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证页面布局："><span class="post-toc-text">验证页面布局：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证页面逻辑："><span class="post-toc-text">验证页面逻辑：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-主页"><span class="post-toc-text">2. 主页</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主页布局"><span class="post-toc-text">主页布局:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主页逻辑："><span class="post-toc-text">主页逻辑：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-showAccount页面"><span class="post-toc-text">3.showAccount页面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#showAccount逻辑："><span class="post-toc-text">showAccount逻辑：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#that-amp-this-在回调方法中的问题"><span class="post-toc-text">that &amp; this 在回调方法中的问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-adding-account页面"><span class="post-toc-text">4.adding_account页面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面布局："><span class="post-toc-text">页面布局：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面逻辑："><span class="post-toc-text">页面逻辑：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结："><span class="post-toc-text">总结：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心问题："><span class="post-toc-text">核心问题：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发问题："><span class="post-toc-text">开发问题：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展和深入："><span class="post-toc-text">扩展和深入：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料："><span class="post-toc-text">参考资料：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/20/计算机科学概论/第十二章、计算理论/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算理论</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjYwNy8xMzE0Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 xiao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://ilifexiao.github.io",
+      animate: false,
+      isHome: false,
+      share: true,
+      reward: 2
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Free/">Free</a><a class="category-link" href="/categories/开发总结/">开发总结</a><a class="category-link" href="/categories/读书笔记/">读书笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/mind/" style="font-size: 10px;">mind</a> <a href="/tags/互联网/" style="font-size: 20px;">互联网+</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/计算机科学概论/" style="font-size: 20px;">计算机科学概论</a> <a href="/tags/重构/" style="font-size: 15px;">重构</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
